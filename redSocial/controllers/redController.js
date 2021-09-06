@@ -1,12 +1,6 @@
 // const red = require('../data/');
 const usuario = require("../data/datos.js")
 
-const usuarios = {
-    mostrarUsuario: function(req,res) {
-    let user = usuario.lista;
-    return res.render('index' , {lista})
-}}
-module.exports = usuarios;
 
 
 const red = {
@@ -31,7 +25,8 @@ const red = {
         res.render('login')
     },
     miPerfil: function (req, res) {
-        res.render('miPerfil')
+        let listaUsuarios = usuarios.lista
+        res.render('miPerfil', {usuario: listaUsuarios})
     },
     registracion: function (req, res) {
         res.render('registracion')
