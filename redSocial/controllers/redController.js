@@ -1,4 +1,13 @@
 // const red = require('../data/');
+const usuario = require("../data/datos.js")
+
+const usuarios = {
+    mostrarUsuario: function(req,res) {
+    let user = usuario.lista;
+    return res.render('index' , {lista})
+}}
+module.exports = usuarios;
+
 
 const red = {
     index: function (req, res) {
