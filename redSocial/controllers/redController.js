@@ -25,7 +25,7 @@ const red = {
         res.render('login')
     },
     miPerfil: function (req, res) {
-        let listaUsuarios = usuarios.lista
+        let listaUsuarios = usuario.lista
         res.render('miPerfil', {usuario: listaUsuarios})
     },
     registracion: function (req, res) {
