@@ -12,7 +12,7 @@ article.post div.info-usuario{
 article.post div.info-usuario img{
     border-radius: 50px;
     padding: 1px;
-    border: 1.5px solid red;
+    border: 1.5px solid white;
 }
 article.post div.info-usuario h4{
    margin: 8px 10px;
@@ -26,6 +26,11 @@ article.post div.post-body{
     display: inline-block;
     width: 100%;
     text-align: center;
+}
+#infousuario{
+    
+    border-top-left-radius: 5mm;
+    border-top-right-radius: 5mm;
 }
 
 article.post div.post-reacciones ul.post-icons{
@@ -47,6 +52,7 @@ article.post div.post-reacciones div.post-pie p{
 article.post div.post-comentarios {
     margin-top: 10px;
     margin-left: 20px;
+    border-radius: 5mm;
 }
 article.post div.post-comentarios h6{
     margin-bottom: 0;

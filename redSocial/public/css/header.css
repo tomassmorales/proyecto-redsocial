@@ -7,6 +7,9 @@ header{
     height: 55px;
     padding-top: 10px;
 }
+header.uk-background-primary{
+    background-color: rgb(204, 121, 39);
+}
 header section{
     height: 100%;
 }
@@ -27,12 +30,12 @@ header a:hover{
 }
 .logo a{
     font-family: 'Fjalla One', sans-serif;
-    color: white;
-}
+    color: rgb(241, 192, 99);}
+
 .logo a:hover {
     text-decoration: none;
-    color: white;
-}
+    color: rgb(241, 192, 99);}
+
 header ul{
     margin: 0;
     padding: 0;
@@ -40,7 +43,7 @@ header ul{
 }
 header div.uk-navbar-center ul li{
     padding: 0 10px;
-    border-right: 1px solid white;
+    border-right: 1px solid rgb(241, 192, 99);;
 }
 header .uk-navbar-right a{
     margin-right: 15px;
