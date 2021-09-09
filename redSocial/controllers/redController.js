@@ -32,8 +32,12 @@ const red = {
         res.render('login')
     },
     miPerfil: function (req, res) {
+        let postsUsuario = posteos.lista
         let listaUsuarios = usuario.lista
-     res.render('miPerfil', {users: listaUsuarios})
+     res.render('miPerfil', {
+         users: listaUsuarios,
+         posts: postsUsuario
+    })
     },
     registracion: function (req, res) {
         res.render('registracion')
