@@ -1,7 +1,13 @@
+/*title usuario font*/
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+/*title font*/
 .info-usuario .foto-perfil{
     border-radius: 50%;
 }
-
+.uk-flex-middle{
+    font-family: 'Libre Baskerville';
+    font-weight: bold;
+}
 .info-usuario .red-usuario{
     list-style: none;
     padding: 0  ;

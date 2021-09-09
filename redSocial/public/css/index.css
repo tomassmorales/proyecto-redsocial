@@ -1,3 +1,6 @@
+/*title usuario font*/
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+/*title font*/
 article.post{
     border: 1px solid lightgray;
     border-radius: 10px;
@@ -16,6 +19,8 @@ article.post div.info-usuario img{
 }
 article.post div.info-usuario h4{
    margin: 8px 10px;
+   font-family: 'Libre Baskerville';
+   font-weight: bold;
 }
 
 article.post div.post-body{
