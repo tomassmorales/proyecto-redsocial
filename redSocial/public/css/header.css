@@ -1,5 +1,11 @@
 /* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+/*Url font*/
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+/* font-family: 'Sawarabi Mincho', sans-serif;*/
+/*Otros font*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Sawarabi+Mincho&display=swap');
+/* font-family: 'Raleway', sans-serif;*/
 /* FONTS */
 
 
@@ -54,4 +60,7 @@ header div.uk-navbar-center ul li:nth-last-child(1){
 }
 header nav form input, header nav form ::placeholder, header nav form span{
     color: white !important;
+}
+#a {
+    font-family: 'Sawarabi Mincho', sans-serif;
 }
