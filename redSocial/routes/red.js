@@ -8,9 +8,9 @@ router.get('/', redController.index);
 
 router.get('/newPost', redController.agregarPost);
 
-router.get('/detallePost', redController.detallePost);
+router.get('/detallePost/:id?', redController.detallePost);
 
-router.get('/detalleUsuario', redController.detalleUsuario);
+router.get('/detalleUsuario/:id?', redController.detalleUsuario);
 
 router.get('/editarPerfil', redController.editarPerfil);
 

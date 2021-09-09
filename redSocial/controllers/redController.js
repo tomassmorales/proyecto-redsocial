@@ -1,12 +1,19 @@
 // const red = require('../data/');
-const usuario = require("../data/datos.js")
+const usuario = require("../data/datos.js");
+const posteos = require("../data/posteos");
 
 
 
 const red = {
     index: function (req, res) {
-        res.render('index', {
 
+        listaPosteos = posteos.lista;
+
+        usuarios = usuario.lista
+
+        res.render('index', { 
+            posteos: listaPosteos,
+            usuarios: usuarios
         })
     },
     agregarPost: function (req, res) {
