@@ -32,6 +32,7 @@ article.post div.post-body{
     width: 100%;
     text-align: center;
 }
+
 #infousuario{
     
     border-top-left-radius: 5mm;
@@ -77,4 +78,6 @@ article.post div.post-comentarios ul li a{
 article.post div.post-comentarios ul li p{
     margin: 0 5px;
 }
-
+#post{
+    background-color: peru;
+}
