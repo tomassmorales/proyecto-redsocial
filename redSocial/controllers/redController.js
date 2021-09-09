@@ -23,7 +23,12 @@ const red = {
         res.render('detallePost')
     },
     detalleUsuario: function (req, res) {
-        res.render('detalleUsuario')
+        let postsUsuario = posteos.lista;
+        let idUsuario = req.params.id;
+        res.render('detalleUsuario', {
+            user: idUsuario,
+            posts: postsUsuario
+        })
     },
     editarPerfil: function (req, res) {
         res.render('editarPerfil')
@@ -32,8 +37,8 @@ const red = {
         res.render('login')
     },
     miPerfil: function (req, res) {
-        let postsUsuario = posteos.lista
-        let listaUsuarios = usuario.lista
+        let postsUsuario = posteos.lista;
+        let listaUsuarios = usuario.lista;
      res.render('miPerfil', {
          users: listaUsuarios,
          posts: postsUsuario
