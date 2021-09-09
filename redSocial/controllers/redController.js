@@ -1,4 +1,7 @@
 // const red = require('../data/');
+const {
+    lista
+} = require("../data/datos.js");
 const usuario = require("../data/datos.js");
 const posteos = require("../data/posteos");
 
@@ -11,7 +14,7 @@ const red = {
 
         usuarios = usuario.lista
 
-        res.render('index', { 
+        res.render('index', {
             posteos: listaPosteos,
             usuarios: usuarios
         })
@@ -20,7 +23,18 @@ const red = {
         res.render('agregarPost')
     },
     detallePost: function (req, res) {
-        res.render('detallePost')
+        idPosteo = req.params.id;
+        listaPosteos = posteos.lista;
+        let post = [];
+        for (let i = 0; i < listaPosteos.length; i++) {
+            if (idPosteo == listaPosteos[i].id) {
+                post.push(listaPosteos[i]);
+            }
+        }
+        res.render('detallePost', {
+            idPost: idPosteo,
+            posteo: post
+        })
     },
     detalleUsuario: function (req, res) {
         let postsUsuario = posteos.lista;
@@ -39,10 +53,10 @@ const red = {
     miPerfil: function (req, res) {
         let postsUsuario = posteos.lista;
         let listaUsuarios = usuario.lista;
-     res.render('miPerfil', {
-         users: listaUsuarios,
-         posts: postsUsuario
-    })
+        res.render('miPerfil', {
+            users: listaUsuarios,
+            posts: postsUsuario
+        })
     },
     registracion: function (req, res) {
         res.render('registracion')
