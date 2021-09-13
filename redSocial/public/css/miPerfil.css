@@ -22,3 +22,61 @@
     color: gray;
     text-decoration: none;
 }
+.divgrande{
+    display: grid;
+    grid-template-columns: 600px 800px;
+    grid-template-rows: 600px;
+    margin-left: 80px;
+    padding-top: 40px;
+    margin-bottom: 100px;
+}
+.cambiardatos{
+    width: 500px;
+    height: 580px;
+    background-color: rgb(204, 121, 39);
+    border-radius: 30px;
+    padding-top: 40px;
+    padding-left: 25px;
+    margin-left: 100px;
+}
+.descri{
+    font-size: 15px;
+    color: white;
+}
+.editarperfil{
+    font-size: 35px;
+    width: 1350px;
+    height: 60px;
+    background-color: rgb(204, 121, 39);
+    color: rgb(241, 192, 99);
+    padding-left: 205px;
+    padding-top: 7px;
+}
+.labels{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.fotodeperfil{
+    width: 400px;
+    height: 400px;
+    background-color: rgb(204, 121, 39);
+    border-radius: 700px;
+    padding-top: 100px;
+    padding-left: 25px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.form{
+    padding: 10px;
+    padding-left: 20px;
+    font-size:20px;
+}
+.formderecho{
+    padding-top: 60px;
+}
+.campo{
+    width: 400px;
+    height: 35px;
+    background-color: rgb(241, 192, 99);
+    border-color: white;
+}

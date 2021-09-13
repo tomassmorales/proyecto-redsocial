@@ -2,7 +2,7 @@
 <html lang="en">
 
 <%- include("./partials/head") %>
-
+<link rel="stylesheet" href="/css/miPerfil.css">
 <body>
 
     <%- include("./partials/headerLogueado") %>
@@ -12,7 +12,38 @@
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
                 <form action="">
 
-                    <h2>(Formulario para editar los datos de perfil del usuario)</h2>
+                    <h2 class="editarperfil">Editar Perfil</h2>
+
+                    <div class="divgrande">
+
+                    <div class="fotodeperfil">
+                        <form class="formderecho" action="">
+                            <label class="descri">Cambiar foto de Perfil:</label><br>
+                            <input class="descri"type="file" id="img" name="img" accept="image/*">
+                        </form>
+                    </div>
+
+                    <div class="cambiardatos">
+
+                        <form  class="form" action="">
+                        <label class="descri">Nombre de Usuario:</label><br>
+                        <input class="campo"type="text" id="fname" name="fname"><br>
+                        <label class="descri">Descripción:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname"><br>
+                        <label class="descri">Sitio web:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname"><br>
+                        <label class="descri">Información personal:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname"><br>
+                        <label class="descri">Correo electrónico:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname"><br>
+                        <label class="descri">Numero de teléfono:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname"><br>
+                        <label class="descri">Género:</label><br>
+                        <input class="campo"type="text" id="lname" name="lname">
+                      </form>
+                    
+                    </div>
+                </div>
 
                 </form>
             </div>
