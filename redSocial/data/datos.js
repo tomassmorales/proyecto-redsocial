@@ -5,14 +5,16 @@ const usuario = {
                 seguidores: 150,
                 seguidos: 150,
                 numeroDePublicaciones: 5,
-                id: 1
+                id: 1,
+                imagenPerfil:""
             },
             {
                 nombreDeUsuario: "tomasmorales",
                 seguidores: 150,
                 seguidos: 150,
                 numeroDePublicaciones: 5,
-                id: 2
+                id: 2,
+                imagenPerfil:""
             }
     ]
 

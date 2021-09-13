@@ -19,7 +19,7 @@ const red = {
         res.render('index', {
             posteos: listaPosteos,
             usuarios: usuarios,
-            comentarios: listaComentarios
+            comentario: listaComentarios
         })
     },
     agregarPost: function (req, res) {
@@ -30,7 +30,6 @@ const red = {
         listaPosteos = posteos.lista;
         let post = [];
         let coment = [];
-        idComentario = req.params.id;
         listaComentarios = comentarios.lista;
 
         for (let i = 0; i < listaPosteos.length; i++) {
@@ -38,16 +37,15 @@ const red = {
                 post.push(listaPosteos[i]);
             }
         };
-        for (let i = 0; i < listaComentarios.length; i++)
-            if (idComentario == listaComentarios[i].id) {
-                coment.push(listaComentarios[i]);
+        for (let k = 0; k < listaComentarios.length; k++)
+            if (idPosteo == listaComentarios[k].id) {
+                coment.push(listaComentarios[k]);
         }
     
         res.render('detallePost', {
             idPost: idPosteo,
             posteo: post,
-            idComent: idComentario,
-            comentario: coment
+            comentario: coment,
         })
     },
     detalleUsuario: function (req, res) {
