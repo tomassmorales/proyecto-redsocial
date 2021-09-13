@@ -48,14 +48,15 @@
                         <div class="post-comentarios">
                             <h6>Comentarios</h6>
                             <ul>
-                                <li>
-                                    <a href="/detalleUsuario">Usuario</a>
+                                <% for (let k = 0; k < 2; k++) { %>
+                                    <% if (comentario[k] = ) {
+                                        
+                                    }
+                                    <li>
+                                    <a href="/detalleUsuario/<%=comentario[k].usuario_id%>">Usuario</a>
                                     <p>Comentario</p>
-                                </li>
-                                <li>
-                                    <a href="/detalleUsuario">Usuario</a>
-                                    <p>Comentario</p>
-                                </li>
+                                    </li>
+                                <% } %>
                                 <a href="/detallePost/<%= posteos[i].id %> ">Ver más...</a>
                             </ul>
                         </div>
