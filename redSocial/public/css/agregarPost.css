@@ -1,3 +1,17 @@
-div.uk-section.uk-section-smal{
-    box-shadow: yellow; 
+.agregarpost{
+    width: 600px;
+    height: 600px;
+    background-color: rgb(204, 121, 39);
+    border-radius: 50px;
+    margin-left: 390px;
+    margin-top: 50px;
+    padding-top: 50px;
+    padding-left: 20px;
+    color: white;
+}
+.titlepost{
+    color: rgb(241, 192, 99);
+    border-bottom: solid black;
+    margin-bottom: 70px;
+    padding-bottom: 10px;
 }
