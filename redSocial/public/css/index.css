@@ -78,6 +78,13 @@ article.post div.post-comentarios ul li a{
 article.post div.post-comentarios ul li p{
     margin: 0 5px;
 }
-#post{
-    background-color: peru;
+
+.colordelbackground{
+    background-color: bisque;
+}
+.nombrebruno{
+    color: rgb(204, 121, 39);
+}
+.colorh5{
+    color: rgb(204, 121, 39);
 }
