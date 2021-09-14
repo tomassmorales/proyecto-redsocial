@@ -22,9 +22,9 @@
                         </div>
                         <div>
                             <ul class="red-usuario uk-flex uk-flex-between uk-width-1-2">
-                                <li><%=users[0].numeroDePublicaciones%> posts</li>
-                                <li><%= users[0].seguidores %> seguidores</li>
-                                <li><%= users[0].seguidos %> seguidos</li>
+                                <li class="numpubli"><%=users[0].numeroDePublicaciones%> posts</li>
+                                <li class="numpubli"><%= users[0].seguidores %> seguidores</li>
+                                <li class="numpubli"><%= users[0].seguidos %> seguidos</li>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             class="uk-card uk-card-hover uk-card-body uk-flex uk-flex-column uk-flex-middle uk-flex-center ">
                             <a href="/detallePost/<%= postDeUsuario[i].id %> " class="link-detalle">
                                 <img src=<%= postDeUsuario[i].imagen %> alt="foto de perfil" class="foto-perfil">
-                                <p class="uk-text-center"><%= postDeUsuario[i].descripción %> </p>
+                                <p class="uk-text-center colornegro"><%= postDeUsuario[i].descripción %> </p>
                             </a>
                         </div>
                         <% } %>

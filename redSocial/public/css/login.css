@@ -1,0 +1,22 @@
+.divgrande{
+    background-color: rgb(204, 121, 39);
+    width: 700px;
+    height: 800px;
+    border-radius: 100px;
+    padding-top: 70px;
+    padding-left: 30px;
+    margin-top: 40px;
+}
+.subtitle{
+    color: rgb(241, 192, 99);
+    border-bottom: solid black;
+    padding-bottom: 15px;
+}
+.campo{
+    height: 40px;
+    width: 400px;
+    margin: 20px;
+}
+.loggin{
+    color: black;
+}
