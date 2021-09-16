@@ -29,19 +29,17 @@ const red = {
         idPosteo = req.params.id;
         listaPosteos = posteos.lista;
         let post = [];
-        let coment = [];
         listaComentarios = comentarios.lista;
+        let coment = [];
 
         for (let i = 0; i < listaPosteos.length; i++) {
             if (idPosteo == listaPosteos[i].id) {
                 post.push(listaPosteos[i]);
             }
         };
-        for (let k = 0; k < listaComentarios.length; k++)
-            if (idPosteo == listaComentarios[k].id) {
-                coment.push(listaComentarios[k]);
-        }
-    
+        for (let k = 0; k < listaComentarios.length; k++){
+        coment.push(listaComentarios[k]);
+        };
         res.render('detallePost', {
             idPost: idPosteo,
             posteo: post,
