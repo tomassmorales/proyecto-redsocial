@@ -72,7 +72,8 @@ const red = {
         res.render('registracion')
     },
     resultadoBusqueda: function (req, res) {
-        res.render('resultadoBusqueda')
+        let busqueda = req.query.busqueda;
+        res.render('resultadoBusqueda', {data: busqueda})
     },
 
 }
