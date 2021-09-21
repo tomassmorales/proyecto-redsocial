@@ -21,7 +21,7 @@ const usuario = {
                 seguidores: 150,
                 seguidos: 150,
                 numeroDePublicaciones: 5,
-                id: 2,
+                id: 3,
                 imagenPerfil:""
             },
             {
@@ -29,7 +29,7 @@ const usuario = {
                 seguidores: 150,
                 seguidos: 150,
                 numeroDePublicaciones: 5,
-                id: 2,
+                id: 4,
                 imagenPerfil:""
             },
             {
@@ -37,7 +37,7 @@ const usuario = {
                 seguidores: 150,
                 seguidos: 150,
                 numeroDePublicaciones: 5,
-                id: 2,
+                id: 5,
                 imagenPerfil:""
             },
     ]
