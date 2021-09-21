@@ -16,3 +16,14 @@
     color: gray;
     text-decoration: none;
 }
+.fotoo-perfil{
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+}
+.detapostusuario{
+    color: black;
+}
+.infodelusuario{
+    color: black;
+}
