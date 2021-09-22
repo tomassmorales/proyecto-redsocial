@@ -51,26 +51,27 @@ const red = {
     detalleUsuario: function (req, res) {
         let postsUsuario = posteos.lista;
         let idUsuario = req.params.id;
+        let usuarios = usuario.lista;
         let nombreUsuario;
         let seguidoresUsuario;
         let seguidosUsuario;
         let fotoPerfilUsuario;
         let numeroPostsUsuario;
-        for(let i = 0; i < lista.length; i++){
-            if(idUsuario == lista[i].id){
-                nombreUsuario = lista[i].nombreDeUsuario;
-                seguidoresUsuario = lista[i].seguidores;
-                seguidosUsuario = lista[i].seguidos;
-                fotoPerfilUsuario = lista[i].imagenPerfil;
-                numeroPostsUsuario = lista[i].numeroDePublicaciones;
-            }
-        }
+        for(let i = 0; i < usuarios.length; i++){
+            if(idUsuario == usuarios[i].id){
+                nombreUsuario = usuarios[i].nombreDeUsuario;
+                seguidoresUsuario = usuarios[i].seguidores;
+                seguidosUsuario = usuarios[i].seguidos;
+                fotoPerfilUsuario = usuarios[i].imagenPerfil;
+                numeroPostsUsuario = usuarios[i].numeroDePublicaciones;
+            };
+        };
         res.render('detalleUsuario', {
-            nombreUser = nombreUsuario,
-            seguidores = seguidoresUsuario,
-            seguidos = seguidosUsuario,
-            fotoPerfil = fotoPerfilUsuario,
-            numPosts = numeroPostsUsuario,
+            nombreUser: nombreUsuario,
+            seguidores: seguidoresUsuario,
+            seguidos: seguidosUsuario,
+            fotoPerfil: fotoPerfilUsuario,
+            numPosts: numeroPostsUsuario,
             user: idUsuario,
             posts: postsUsuario
         })
