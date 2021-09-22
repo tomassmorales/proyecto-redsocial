@@ -55,11 +55,22 @@ const red = {
         let seguidoresUsuario;
         let seguidosUsuario;
         let fotoPerfilUsuario;
-        let 
+        let numeroPostsUsuario;
         for(let i = 0; i < lista.length; i++){
-
+            if(idUsuario == lista[i].id){
+                nombreUsuario = lista[i].nombreDeUsuario;
+                seguidoresUsuario = lista[i].seguidores;
+                seguidosUsuario = lista[i].seguidos;
+                fotoPerfilUsuario = lista[i].imagenPerfil;
+                numeroPostsUsuario = lista[i].numeroDePublicaciones;
+            }
         }
         res.render('detalleUsuario', {
+            nombreUser = nombreUsuario,
+            seguidores = seguidoresUsuario,
+            seguidos = seguidosUsuario,
+            fotoPerfil = fotoPerfilUsuario,
+            numPosts = numeroPostsUsuario,
             user: idUsuario,
             posts: postsUsuario
         })
