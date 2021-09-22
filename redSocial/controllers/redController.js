@@ -37,10 +37,9 @@ const red = {
                 post.push(listaPosteos[i]);
             }
         };
-        for (let k = 0; k < listaComentarios.length; k++)
-            if (idPosteo == listaComentarios[k].id) {
-                coment.push(listaComentarios[k]);
-        }
+        for (let k = 0; k < listaComentarios.length; k++){
+            coment.push(listaComentarios[k]);
+        };
     
         res.render('detallePost', {
             idPost: idPosteo,
@@ -94,7 +93,8 @@ const red = {
         res.render('registracion')
     },
     resultadoBusqueda: function (req, res) {
-        res.render('resultadoBusqueda')
+        let busqueda = req.query.busqueda;
+        res.render('resultadoBusqueda', {data: busqueda})
     },
 
 }
