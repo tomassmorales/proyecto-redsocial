@@ -6,7 +6,7 @@ const usuario = {
                 seguidos: 150,
                 numeroDePublicaciones: 5,
                 id: 1,
-                imagenPerfil:"https://www.contrareplica.mx/uploads/galerias/normal/d51adde6198cd2e5a32ddda82d2ee9b6.jpg"
+                imagenPerfil:""
             },
             {
                 nombreDeUsuario: "tomasmorales",
