@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<%- include("./partials/head") %>
 
-<link rel="stylesheet" href="/css/index.css">
+<head>
+    <%- include("./partials/head") %>
+
+    <link rel="stylesheet" href="/css/index.css">
 </head>
+
 <body>
 
     <%- include("./partials/headerLogueado") %>
@@ -20,14 +22,15 @@
                     <% for(let j = 0; j < usuarios.length; j++){%>
                     <% if(usuarios[j].id == posteos[i].usuario_id){%>
                     <% usuarioPost = usuarios[j].nombreDeUsuario%>
-                    <% usuarioFoto = usuarios[j].imagenPerfil}%> 
+                    <% usuarioFoto = usuarios[j].imagenPerfil}%>
                     <% } %>
                     <article class="post uk-card-default uk-flex uk-flex-column colordelbackground">
                         <div class="info-usuario uk-flex colorback" id="infousuario">
                             <div>
-                                <img src=<%= usuarioFoto %>  alt="">
+                                <img src=<%= usuarioFoto %> alt="">
                             </div>
-                            <h4><a class="nombrebruno" href="/detalleUsuario/<%= posteos[i].usuario_id %> "><%=usuarioPost%> </a></h4>
+                            <h4><a class="nombrebruno"
+                                    href="/detalleUsuario/<%= posteos[i].usuario_id %> "><%=usuarioPost%> </a></h4>
 
                         </div>
                         <div class="post-body uk-flex uk-flex-center">
@@ -43,7 +46,8 @@
                                 </li>
                             </ul>
                             <div class="post-pie uk-flex">
-                                <h5 class="uk-width-1-6 "><a class="colorh5" href="/detalleUsuario/<%=posteos[i].usuario_id%> "><%=usuarioPost%> </a></h5>
+                                <h5 class="uk-width-1-6 "><a class="colorh5"
+                                        href="/detalleUsuario/<%=posteos[i].usuario_id%> "><%=usuarioPost%> </a></h5>
                                 <p class="uk-width-5-6"><%=posteos[i].descripción%></p>
                             </div>
                         </div>
@@ -51,19 +55,17 @@
                             <h6>Comentarios</h6>
                             <ul>
                                 <% for (let k = 0; k <= 3; k++) { %>
-                                    <% let usuarioc; %>
+                                <% let usuarioc; %>
                                 <% for(let j = 0; j < usuarios.length; j++){%>
                                 <% if(usuarios[j].id == comentario[k].usuario_id){%>
                                 <% usuarioc = usuarios[j].nombreDeUsuario }%>
                                 <% } %>
-                                    <% if (comentario[k].posteo_id = posteos[i].id) { %>
-                                        <li>
-                                        <a href="/detalleUsuario/<%=comentario[k].usuario_id%>"><%=usuarioc %></a>
-                                         <p><%=comentario[k].texto%></p>
-                                         </li>
-                                    <% } %>
-                                    
-                                    
+                                <% if (comentario[k].posteo_id = posteos[i].id) { %>
+                                <li>
+                                    <a href="/detalleUsuario/<%=comentario[k].usuario_id%>"><%=usuarioc %></a>
+                                    <p><%=comentario[k].texto%></p>
+                                </li>
+                                <% } %>
                                 <% } %>
                                 <a href="/detallePost/<%= posteos[i].id %> ">Ver más...</a>
                             </ul>
