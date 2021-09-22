@@ -1,7 +1,7 @@
 // const red = require('../data/');
 const {
     lista
-} = require("../data/datos.js");
+}= require("../data/datos.js");
 const usuario = require("../data/datos.js");
 const posteos = require("../data/posteos");
 const comentarios = require("../data/comentarios");
@@ -51,6 +51,14 @@ const red = {
     detalleUsuario: function (req, res) {
         let postsUsuario = posteos.lista;
         let idUsuario = req.params.id;
+        let nombreUsuario;
+        let seguidoresUsuario;
+        let seguidosUsuario;
+        let fotoPerfilUsuario;
+        let 
+        for(let i = 0; i < lista.length; i++){
+
+        }
         res.render('detalleUsuario', {
             user: idUsuario,
             posts: postsUsuario
