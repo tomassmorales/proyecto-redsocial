@@ -54,13 +54,13 @@
                         <div class="post-comentarios">
                             <h6>Comentarios</h6>
                             <ul>
-                                <% for (let k = 0; k <= 3; k++) { %>
-                                <% let usuarioc; %>
-                                <% for(let j = 0; j < usuarios.length; j++){%>
-                                <% if(usuarios[j].id == comentario[k].usuario_id){%>
-                                <% usuarioc = usuarios[j].nombreDeUsuario }%>
-                                <% } %>
-                                <% if (comentario[k].posteo_id = posteos[i].id) { %>
+                                <% for (let k = 0; k <= 3; k++) {
+                                 let usuarioc; 
+                                 for(let j = 0; j < usuarios.length; j++){
+                                 if(usuarios[j].id == comentario[k].usuario_id){
+                                 usuarioc = usuarios[j].nombreDeUsuario }
+                                 } 
+                                 if (comentario[k].posteo_id = posteos[i].id) { %>
                                 <li>
                                     <a href="/detalleUsuario/<%=comentario[k].usuario_id%>"><%=usuarioc %></a>
                                     <p><%=comentario[k].texto%></p>
