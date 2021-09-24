@@ -29,7 +29,7 @@
                             <div>
                                 <img src= "<%= usuarioFoto %>" alt="">
                             </div>
-                            <h4> <a> class="nombrebruno" href="/detalleUsuario/<%= posteos[i].usuario_id %> "><%=usuarioPost%> </a></h4>
+                            <h4> <a class="nombrebruno" href="/detalleUsuario/<% = posteos[i].usuario_id %> "><%=usuarioPost%> </a></h4>
 
                         </div>
                         <div class="post-body uk-flex uk-flex-center">
@@ -58,8 +58,8 @@
                                  for(let j = 0; j < usuarios.length; j++){
                                  if(usuarios[j].id == comentario[k].usuario_id){
                                  usuarioc = usuarios[j].nombreDeUsuario }
-                                 } 
-                                 if (comentario[k].posteo_id = posteos[i].id) { %>
+                                 <% } %>
+                                if (comentario[k].posteo_id = posteos[i].id) {  
                                 <li>
                                     <a href="/detalleUsuario/<%=comentario[k].usuario_id%>"><%=usuarioc %></a>
                                     <p><%=comentario[k].texto%></p>
