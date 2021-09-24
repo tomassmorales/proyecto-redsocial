@@ -16,20 +16,20 @@
             <div class="uk-container uk-container-large uk-flex">
                 <section id="posts"
                     class="uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-child-width-1-2 uk-width-1-1">
-                    <% for(let i = 0; i < posteos.length ; i++){ 
-                     let usuarioPost; 
-                     let usuarioFoto; 
-                     for(let j = 0; j < usuarios.length; j++){
-                     if(usuarios[j].id == posteos[i].usuario_id){
-                     usuarioPost = usuarios[j].nombreDeUsuario
-                     usuarioFoto = usuarios[j].imagenPerfil}>%
+                    <%for(let i = 0; i < posteos.length ; i++){ %>
+                        <% let usuarioPost; %>
+                        <%let usuarioFoto; %>
+                        <%for(let j = 0; j < usuarios.length; j++){%>
+                            <%if(usuarios[j].id == posteos[i].usuario_id){%>
+                                <%usuarioPost = usuarios[j].nombreDeUsuario%>
+                                <%usuarioFoto = usuarios[j].imagenPerfil}%>
                     <% } %>
                     <article class="post uk-card-default uk-flex uk-flex-column colordelbackground">
                         <div class="info-usuario uk-flex colorback" id="infousuario">
                             <div>
                                 <img src= "<%= usuarioFoto %>" alt="">
                             </div>
-                            <h4> <a class="nombrebruno" href="/detalleUsuario/<% = posteos[i].usuario_id %>"> <%=usuarioPost%> </a></h4>
+                            <h4> <a class="nombrebruno" href="/detalleUsuario/<%  posteos[i].usuario_id %>"> <%=usuarioPost%> </a></h4>
 
                         </div>
                         <div class="post-body uk-flex uk-flex-center">
@@ -53,13 +53,13 @@
                         <div class="post-comentarios">
                             <h6>Comentarios</h6>
                             <ul>
-                                <% for (let k = 0; k <= 3; k++) {
-                                 let usuarioc; 
-                                 for(let j = 0; j < usuarios.length; j++){
-                                 if(usuarios[j].id == comentario[k].usuario_id){
-                                 usuarioc = usuarios[j].nombreDeUsuario }
-                                 <% } %>
-                                if (comentario[k].posteo_id = posteos[i].id) {  
+                                <%for (let k = 0; k <= 3; k++) {%>
+                                    <%let usuarioc; %>
+                                    <%for(let j = 0; j < usuarios.length; j++){%>
+                                        <%if(usuarios[j].id == comentario[k].usuario_id){%>
+                                            <%usuarioc = usuarios[j].nombreDeUsuario }%>
+                                            <% } %>
+                                            <%if (comentario[k].posteo_id = posteos[i].id) { %> 
                                 <li>
                                     <a href="/detalleUsuario/<%=comentario[k].usuario_id%>"><%=usuarioc %></a>
                                     <p><%=comentario[k].texto%></p>
