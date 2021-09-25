@@ -78,7 +78,6 @@ article.post div.post-comentarios ul li a{
 article.post div.post-comentarios ul li p{
     margin: 0 5px;
 }
-
 .colordelbackground{
     background-color: bisque;
 }
@@ -87,4 +86,10 @@ article.post div.post-comentarios ul li p{
 }
 .colorh5{
     color: rgb(204, 121, 39);
+}
+
+#fotoPerfil {
+    height: 50px;
+    width: 100%;
+    border-radius: 100%;
 }
