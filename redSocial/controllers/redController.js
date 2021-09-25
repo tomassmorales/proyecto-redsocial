@@ -1,7 +1,7 @@
 // const red = require('../data/');
 const {
     lista
-}= require("../data/datos.js");
+} = require("../data/datos.js");
 const usuario = require("../data/datos.js");
 const posteos = require("../data/posteos");
 const comentarios = require("../data/comentarios");
@@ -26,25 +26,48 @@ const red = {
         res.render('agregarPost')
     },
     detallePost: function (req, res) {
-        idPosteo = req.params.id;
-        listaPosteos = posteos.lista;
+        let idPosteo = req.params.id;
+        let listaPosteos = posteos.lista;
         let post = [];
         let coment = [];
-        listaComentarios = comentarios.lista;
+        let listaComentarios = comentarios.lista;
+        let usuarioc = usuario.lista;
+        let userName;
+        let imagenPerfil;
+        
+
 
         for (let i = 0; i < listaPosteos.length; i++) {
             if (idPosteo == listaPosteos[i].id) {
                 post.push(listaPosteos[i]);
             }
         };
-        for (let k = 0; k < listaComentarios.length; k++){
-            coment.push(listaComentarios[k]);
+        for (let k = 0; k < listaComentarios.length; k++) {
+            //if (idPosteo == listaComentarios[k].id) {
+                coment.push(listaComentarios[k]);
+            //};
+            
         };
-    
+        for (let p = 0; p < usuarioc.length; p++) {
+            if (idPosteo == usuarioc[p].id) {
+                userName = usuarioc[p].nombreDeUsuario;
+                
+            };
+            //if (idPosteo == listaComentarios.usuario_id) {
+              imagenPerfil = usuarioc[p].imagenPerfil;  
+            //};
+            
+        };
+        
+
         res.render('detallePost', {
             idPost: idPosteo,
             posteo: post,
             comentario: coment,
+            usuario: usuarioc,
+            user: userName,
+            imagen: imagenPerfil,
+            
         })
     },
     detalleUsuario: function (req, res) {
@@ -56,8 +79,8 @@ const red = {
         let seguidosUsuario;
         let fotoPerfilUsuario;
         let numeroPostsUsuario;
-        for(let i = 0; i < usuarios.length; i++){
-            if(idUsuario == usuarios[i].id){
+        for (let i = 0; i < usuarios.length; i++) {
+            if (idUsuario == usuarios[i].id) {
                 nombreUsuario = usuarios[i].nombreDeUsuario;
                 seguidoresUsuario = usuarios[i].seguidores;
                 seguidosUsuario = usuarios[i].seguidos;
@@ -94,7 +117,9 @@ const red = {
     },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
-        res.render('resultadoBusqueda', {data: busqueda})
+        res.render('resultadoBusqueda', {
+            data: busqueda
+        })
     },
 
 }
