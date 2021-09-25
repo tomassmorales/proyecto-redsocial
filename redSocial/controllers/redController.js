@@ -1,7 +1,7 @@
 // const red = require('../data/');
 const {
     lista
-}= require("../data/datos.js");
+} = require("../data/datos.js");
 const usuario = require("../data/datos.js");
 const posteos = require("../data/posteos");
 const comentarios = require("../data/comentarios");
@@ -37,10 +37,10 @@ const red = {
                 post.push(listaPosteos[i]);
             }
         };
-        for (let k = 0; k < listaComentarios.length; k++){
+        for (let k = 0; k < listaComentarios.length; k++) {
             coment.push(listaComentarios[k]);
         };
-    
+
         res.render('detallePost', {
             idPost: idPosteo,
             posteo: post,
@@ -56,8 +56,8 @@ const red = {
         let seguidosUsuario;
         let fotoPerfilUsuario;
         let numeroPostsUsuario;
-        for(let i = 0; i < usuarios.length; i++){
-            if(idUsuario == usuarios[i].id){
+        for (let i = 0; i < usuarios.length; i++) {
+            if (idUsuario == usuarios[i].id) {
                 nombreUsuario = usuarios[i].nombreDeUsuario;
                 seguidoresUsuario = usuarios[i].seguidores;
                 seguidosUsuario = usuarios[i].seguidos;
@@ -94,7 +94,9 @@ const red = {
     },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
-        res.render('resultadoBusqueda', {data: busqueda})
+        res.render('resultadoBusqueda', {
+            data: busqueda
+        })
     },
 
 }
