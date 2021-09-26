@@ -33,7 +33,7 @@ const red = {
         let listaComentarios = comentarios.lista;
         let usuarioc = usuario.lista;
         let userName;
-        let imagenPerfil;
+        let imagen = [];
         
 
 
@@ -43,22 +43,21 @@ const red = {
             }
         };
         for (let k = 0; k < listaComentarios.length; k++) {
-            //if (idPosteo == listaComentarios[k].id) {
                 coment.push(listaComentarios[k]);
-            //};
-            
         };
         for (let p = 0; p < usuarioc.length; p++) {
             if (idPosteo == usuarioc[p].id) {
                 userName = usuarioc[p].nombreDeUsuario;
-                
+                imagen.push(usuarioc[p].imagenPerfil)
             };
-            //if (idPosteo == listaComentarios.usuario_id) {
-              imagenPerfil = usuarioc[p].imagenPerfil;  
-            //};
-            
+             
         };
-        
+        /*/for (let l =0; l <usuarioc.length; l++) {
+            if (idPosteo == usuarioc[l].id) {
+                
+            imagenPerfil = usuarioc[l].imagenPerfil;     
+            }
+        }/*/
 
         res.render('detallePost', {
             idPost: idPosteo,
@@ -66,7 +65,7 @@ const red = {
             comentario: coment,
             usuario: usuarioc,
             user: userName,
-            imagen: imagenPerfil,
+            imagen: imagen,
             
         })
     },
