@@ -13,7 +13,7 @@ const usuario = {
             seguidos: 150,
             numeroDePublicaciones: 5,
             id: 2,
-            imagenPerfil: "https://lh3.googleusercontent.com/proxy/n08FU339sllVzHI9Sdzoxaqke68upvVMxNDwMXYVdZMKDnSpfk0-iaSUxnBma8VusjKMxIQ_1CHnwrx7h6-THkr9hDd8VVJVwTlTMxvvI_W_Rrr56IXAy4UOkKZzTWiNo1z_syH3"
+            imagenPerfil: "https://lh3.googleusercontent.com/proxy/mJO5sC2Zjr-Ip5jB3JzT9yg6Qs44umyPwJYF3KRxW3zGYhMWEYb3msaAMXtVMCfbFzmJ5gj02zLIFNJvAFRAN07FNRZrdInPtqHZKkl1beDhBabE6bwdYT6ZQg237muBpOQTZFl6"
         },
         {
             nombreDeUsuario: "marcoslagreste",
