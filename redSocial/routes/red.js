@@ -3,7 +3,7 @@ var router = express.Router();
 let redController = require('../controllers/redController')
 
 /* GET home page. */
-/*localhost:3000/red */
+/*localhost:3000/ */
 router.get('/', redController.index);
 
 router.get('/newPost', redController.agregarPost);
