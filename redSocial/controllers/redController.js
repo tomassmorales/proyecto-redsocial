@@ -6,7 +6,6 @@ const usuario = require("../data/datos.js");
 const posteos = require("../data/posteos");
 const comentarios = require("../data/comentarios");
 const db = require('../database/models');
-const red = db.usuarios;
 
 const red = {
     index: function (req, res) {
