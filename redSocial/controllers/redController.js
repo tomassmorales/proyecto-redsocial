@@ -10,6 +10,18 @@ const db = require('../database/models');
 const red = {
     index: function (req, res) {
 
+        let posts = db.Post.findAll({
+            order: [
+                [
+                    "fecha_creacion", "ASC"
+                ],
+                [
+                    "usuario_id", "DESC"
+                ]
+            ],
+            limit: 10
+        })
+
         listaPosteos = posteos.lista;
 
         usuarios = usuario.lista;
