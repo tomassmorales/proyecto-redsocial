@@ -1,4 +1,5 @@
 var express = require('express');
+const red = require('../controllers/redController');
 var router = express.Router();
 let redController = require('../controllers/redController')
 
@@ -22,4 +23,6 @@ router.get('/registracion', redController.registracion);
 
 router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
+
+router.post('/newPost', redController.storePost)
 module.exports = router;

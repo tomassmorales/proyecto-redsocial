@@ -12,6 +12,18 @@ const op = db.sequelize.Op;
 const red = {
     index: function (req, res) {
 
+        let posts = db.Post.findAll({
+            order: [
+                [
+                    "fecha_creacion", "ASC"
+                ],
+                [
+                    "usuario_id", "DESC"
+                ]
+            ],
+            limit: 10
+        })
+/*falta guardar en una variable los usuarios y los comentarios para mandarlos con un promise all al index*/
         listaPosteos = posteos.lista;
 
         usuarios = usuario.lista;
@@ -27,8 +39,16 @@ const red = {
     agregarPost: function (req, res) {
         res.render('agregarPost')
     },
+    storePost: function(req,res){
+        res.redirect("detallePost");
+    },
     detallePost: function (req, res) {
         let idPosteo = req.params.id;
+
+        let posteo = db.Post.findByPk(idPosteo);
+        /*Falta traer la información de los comentarios del posteo y el usuario que lo hizo para hacer un promise all y mandar todo*/
+
+
         let listaPosteos = posteos.lista;
         let post = [];
         let coment = [];
@@ -72,8 +92,18 @@ const red = {
         })
     },
     detalleUsuario: function (req, res) {
-        let postsUsuario = posteos.lista;
         let idUsuario = req.params.id;
+        let posteosUsuario = db.Post.findAll({
+            where: [
+                {'usuario_id': idUsuario}
+            ],
+            order: [
+                ['fecha_creacion','DESC']
+            ],
+        })
+        /*Falta traer la información del usuario para luego hacer un promise all y llevar toda la información a la pagina*/
+
+        let postsUsuario = posteos.lista;
         let usuarios = usuario.lista;
         let nombreUsuario;
         let seguidoresUsuario;
@@ -106,6 +136,7 @@ const red = {
         res.render('login')
     },
     miPerfil: function (req, res) {
+        /*Acá hay que hacer algo parecido a detalleUsuario pero en base al id del usuario logeado */
         let postsUsuario = posteos.lista;
         let listaUsuarios = usuario.lista;
         res.render('miPerfil', {
@@ -118,6 +149,24 @@ const red = {
     },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
+        /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:
+        movie.findAll({
+            where: [
+                {'title': {[op.like]:`%${search}%`}}
+            ],
+            order: [
+                ['rating','ASC']
+            ],
+            limit:5,
+            offset:5
+        })
+        .then( movies => {
+            return res.send(movies);
+        })
+        .catch(error => {
+            return res.send(error)
+        })
+        */
         res.render('resultadoBusqueda', {
             data: busqueda
         })
