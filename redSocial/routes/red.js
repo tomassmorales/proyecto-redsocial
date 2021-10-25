@@ -24,5 +24,10 @@ router.get('/registracion', redController.registracion);
 router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
 
-router.post('/newPost', redController.storePost)
+router.post('/newPost', redController.storePost);
+
+//router.post('/newComent', redController.storeComent);
+
+//router.post()
+
 module.exports = router;
