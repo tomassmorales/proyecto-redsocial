@@ -32,7 +32,7 @@ var red = {
                     "usuario_id", "DESC"
                 ]
             ],
-            limit: 5
+            limit: 4
         }) */
 /*falta guardar en una variable los usuarios y los comentarios para mandarlos con un promise all al index*/
         listaPosteos = posteos.lista;
@@ -53,10 +53,18 @@ var red = {
     storePost: function(req,res){
         res.redirect("detallePost");
     },
+    agregarComentario:function (req, res) {
+        res.render('agregarComentario');
+    },
+    storeComentario:function (req, res) {
+        res.redirect('detallePost');
+    },
     detallePost: function (req, res) {
         let idPosteo = req.params.id;
+        let idComentario = req.params.id;
 
         let posteo = db.Post.findByPk(idPosteo);
+        let comentario = db.comentarios.findByPk(idComentario);
         /*Falta traer la información de los comentarios del posteo y el usuario que lo hizo para hacer un promise all y mandar todo*/
 
 
@@ -169,7 +177,7 @@ var red = {
                 ['rating','ASC']
             ],
             limit:5,
-            offset:5
+            offset:0
         })
         .then( movies => {
             return res.send(movies);
