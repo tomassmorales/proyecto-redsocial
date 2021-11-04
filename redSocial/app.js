@@ -27,6 +27,7 @@ app.use(session({
   resave: true,
   saveUnitialized: false
 }))
+
 //implementacion de cookies
 app.use(function (req, res, next) {
   if(req.cookies.usuarioId != undefined && req.session.user == undefined){
