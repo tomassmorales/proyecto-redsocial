@@ -56,10 +56,32 @@ var red = {
         })
     },
     agregarPost: function (req, res) {
-        res.render('agregarPost')
+        db.Post.findAll()
+        .then(Post => {
+            res.render('agregarPost',{Post})
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+        //res.render('agregarPost')
     },
     storePost: function(req,res){
+        db.Post.agregarPost({
+            id: req.body.id,
+            usuario_id: req.body.usuario_id,
+            descripcion: req.body.descripcion,
+            fecha_creacion: req.body.fecha_creacion,
+            descripcion: req.body.descripcion,
+            imagen: req.body.imagen
+        })
+        .then(movie => {
         res.redirect("detallePost");
+        })
+        .catch(err => {
+            console.log(err);
+            res.send(err)
+        })
     },
     agregarComentario:function (req, res) {
         res.render('agregarComentario');
