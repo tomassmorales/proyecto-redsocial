@@ -34,10 +34,10 @@ let userController = {
 		} else {
 			let passwordEncriptada = bcrypt.hashSync(req.body.password, 10)
 			db.Usuario.create({
-					nombreDeUsuario: req.body.username,
+					nombre_usuario: req.body.username,
 					email: req.body.email,
 					contraseña: passwordEncriptada,
-					fechaNacimiento: req.body.fechaNacimiento,
+					fechaNacimiento: req.body.fechaNacimiento, //agregar fechaNacimiento a models/usuarios
 					createdAt: Date.now()
 				})
 				.then(user => {
