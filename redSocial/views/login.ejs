@@ -17,16 +17,21 @@
 
                     <div class="divgrande">
                         <h2 class="subtitle">Login</h2>
-                        <form class="formulario" action="">
-                            <label class="loggin">Nombre de Usuario:</label><br>
-                            <input class="campo" type="text" id="fname" name="fname"><br>
+                        <form class="formulario" action="/user/login" method="POST">
+                            <% if(locals.error != undefined){ %> 
+                                <p><%= error.message %> </p>
+                            <% } %> 
+                            <label class="loggin">Email:</label><br>
+                            <input class="campo" type="email" id="fname" name="email"><br>
                             <label class="loggin">Contraseña:</label><br>
-                            <input class="campo" type="text" id="lname" name="lname"><br>
-                            <h3 class="subtitle">¿Olvidaste tu contraseña?</h3>
+                            <input class="campo" type="password" id="lname" name="password"><br>
+                            <label for="">Recordame</label> <input type="checkbox" name="recordame">
+                            <!-- <h3 class="subtitle">¿Olvidaste tu contraseña?</h3>
                             <label class="loggin">Correo electrónico:</label><br>
                             <input class="campo" type="text" id="lname" name="lname"><br>
                             <label class="loggin">Numero de teléfono:</label><br>
-                            <input class="campo" type="text" id="lname" name="lname"><br>
+                            <input class="campo" type="text" id="lname" name="lname"><br> -->
+                            <button>ENTRAR</button>
                         </form>
                     </div>
 
