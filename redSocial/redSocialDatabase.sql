@@ -3,10 +3,13 @@ USE redSocial;
 
 CREATE TABLE usuarios (
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+nombre_usuario VARCHAR (20) NOT NULL,
+email VARCHAR (100) NOT NULL,
+contraseña VARCHAR (25) NOT NULL,
 seguidores INT UNSIGNED,
 seguidos INT UNSIGNED,
 publicaciones INT UNSIGNED,
-fotoPerfil VARCHAR(2000)
+foto_perfil VARCHAR(2000)
 );
 
 CREATE TABLE posts (
