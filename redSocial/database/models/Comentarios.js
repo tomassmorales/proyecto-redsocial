@@ -26,5 +26,16 @@ module.exports = function(sequelize, dataTypes){
         underscored: true, //Si los nombres de las columnas en la db tienen guiones bajos en lugar de camelCase.        
     }
     const comentarios = sequelize.define(alias, columnas, config);
-        return comentarios;
+        comentarios.associate = function (models) {
+            comentarios.belongsTo(models.Post, {
+                as: "post",
+                foreingKey: "posteo_id"
+            })
+            comentarios.belongsTo(model.Usuario, {
+                as: "comentario_usuario",
+                foreingKey: "usuario_id"
+            })
+        } //hay que hacer lo mismo para usuario y post
+
+    return comentarios;
 }

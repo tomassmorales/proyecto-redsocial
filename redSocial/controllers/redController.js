@@ -34,6 +34,14 @@ var red = {
             ],
             limit: 4
         }) */
+        /*let user = db.Usuario.findAll({
+            order: [
+                [
+                    "usuario_id", "DESC"
+                ]
+            ],
+            limit: 10
+        }) */
 /*falta guardar en una variable los usuarios y los comentarios para mandarlos con un promise all al index*/
         listaPosteos = posteos.lista;
 
@@ -62,9 +70,11 @@ var red = {
     detallePost: function (req, res) {
         let idPosteo = req.params.id;
         let idComentario = req.params.id;
+        let idUsuario = req.params.id;
 
+        let usuario = db.Usuario.findByPk(idUsuario);
         let posteo = db.Post.findByPk(idPosteo);
-        let comentario = db.comentarios.findByPk(idComentario);
+        let comentario = db.Comentarios.findByPk(idComentario);
         /*Falta traer la información de los comentarios del posteo y el usuario que lo hizo para hacer un promise all y mandar todo*/
 
 
