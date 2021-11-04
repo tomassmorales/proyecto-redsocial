@@ -32,21 +32,22 @@ let userController = {
 			res.locals.error = errors;
 			res.render("registracion")
 		} else {
-			let passwordEncriptada = bcrypt.hashSync(req.body.password, 10)
-			db.Usuario.create({
-					nombreDeUsuario: req.body.username,
-					email: req.body.email,
-					contraseña: passwordEncriptada,
-					fechaNacimiento: req.body.fechaNacimiento,
-					createdAt: Date.now()
-				})
-				.then(user => {
-					res.redirect('/')
-				})
-				.catch(err => {
-					console.log(err);
-					res.send(err)
-				})
+			res.send(req.body)
+		// 	let passwordEncriptada = bcrypt.hashSync(req.body.password, 10)
+		// 	db.Usuario.create({
+		// 			nombreDeUsuario: req.body.username,
+		// 			email: req.body.email,
+		// 			contraseña: passwordEncriptada,
+		// 			fechaNacimiento: req.body.fechaNacimiento,
+		// 			createdAt: Date.now()
+		// 		})
+		// 		.then(user => {
+		// 			res.redirect('/')
+		// 		})
+		// 		.catch(err => {
+		// 			console.log(err);
+		// 			res.send(err)
+		// 		})
 		}
 	},
 	login: function (req, res) {

@@ -10,7 +10,6 @@ router.get('/login', userController.login);
 
 router.get('/registracion', userController.registracion);
 
-
 router.post("/registracion", userController.registrar);
 
 module.exports = router;
