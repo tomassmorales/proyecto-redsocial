@@ -1,9 +1,14 @@
 var express = require('express');
+const red = require('../controllers/redController');
 var router = express.Router();
+let userController = require('../controllers/userController')
 
-/* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
+/* GET home page. */
+/*localhost:3000/ */
+
+router.get('/login', userController.login);
+
+router.get('/registracion', userController.registracion);
+
 
 module.exports = router;

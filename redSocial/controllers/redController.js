@@ -151,9 +151,6 @@ var red = {
     editarPerfil: function (req, res) {
         res.render('editarPerfil')
     },
-    login: function (req, res) {
-        res.render('login')
-    },
     miPerfil: function (req, res) {
         /*Acá hay que hacer algo parecido a detalleUsuario pero en base al id del usuario logeado */
         let postsUsuario = posteos.lista;
@@ -162,9 +159,6 @@ var red = {
             users: listaUsuarios,
             posts: postsUsuario
         })
-    },
-    registracion: function (req, res) {
-        res.render('registracion')
     },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;

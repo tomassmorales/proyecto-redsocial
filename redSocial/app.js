@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 
 
 app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/', redRouter);
 
 

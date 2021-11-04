@@ -15,11 +15,11 @@ router.get('/detalleUsuario/:id?', redController.detalleUsuario);
 
 router.get('/editarPerfil', redController.editarPerfil);
 
-router.get('/login', redController.login);
+// router.get('/login', redController.login);
 
 router.get('/miPerfil', redController.miPerfil);
 
-router.get('/registracion', redController.registracion);
+// router.get('/registracion', redController.registracion);
 
 router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
