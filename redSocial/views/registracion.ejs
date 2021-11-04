@@ -14,7 +14,7 @@
 
                 <div class="divgrande">
                     <h2 class="subtitle">Registrarme</h2>
-                    <form action="/user/registracion" method="POST" enctype="multipart/form-data">
+                    <form action="/user/registracion" method="POST">
                         <% if(locals.error != undefined){ %> 
                             <p><%= error.message%> </p>
                         <% } %>

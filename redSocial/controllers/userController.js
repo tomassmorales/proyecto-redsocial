@@ -16,39 +16,41 @@ let userController = {
 				}
 			})
 			.then(function (email) {
-				emailExistente = email;
-			})
 
-		if (req.body.email == "") {
-			errors.message = "El campo del email no puede estar vacio";
-			res.locals.error = errors;
-			res.render("registracion")
-		} else if (req.body.password == "") {
-			errors.message = "El campo de la contraseña no puede estar vacio";
-			res.locals.error = errors;
-			res.render("registracion")
-		} else if (emailExistente != "") {
-			errors.message = "Ya existe un usuario con ese email";
-			res.locals.error = errors;
-			res.render("registracion")
-		} else {
-			res.send(req.body)
-		// 	let passwordEncriptada = bcrypt.hashSync(req.body.password, 10)
-		// 	db.Usuario.create({
-		// 			nombreDeUsuario: req.body.username,
-		// 			email: req.body.email,
-		// 			contraseña: passwordEncriptada,
-		// 			fechaNacimiento: req.body.fechaNacimiento,
-		// 			createdAt: Date.now()
-		// 		})
-		// 		.then(user => {
-		// 			res.redirect('/')
-		// 		})
-		// 		.catch(err => {
-		// 			console.log(err);
-		// 			res.send(err)
-		// 		})
-		}
+				emailExistente = email;
+
+				if (req.body.email == "") {
+					errors.message = "El campo del email no puede estar vacio";
+					res.locals.error = errors;
+					res.render("registracion")
+				} else if (req.body.password == "") {
+					errors.message = "El campo de la contraseña no puede estar vacio";
+					res.locals.error = errors;
+					res.render("registracion")
+				} else if (emailExistente != "") {
+					errors.message = "Ya existe un usuario con ese email";
+					res.locals.error = errors;
+					res.render("registracion")
+				} else {
+					// res.send(req.body)
+					let passwordEncriptada = bcrypt.hashSync(req.body.password, 10)
+					db.Usuario.create({
+							nombreDeUsuario: req.body.username,
+							email: req.body.email,
+							contrasenia: passwordEncriptada,
+							fechaNacimiento: req.body.fechaNacimiento,
+							createdAt: Date.now()
+						})
+						.then(user => {
+							res.redirect('/')
+						})
+						.catch(err => {
+							console.log(err);
+							res.send(err)
+						})
+				}
+			})
+		
 	},
 	login: function (req, res) {
 		res.render('login')
