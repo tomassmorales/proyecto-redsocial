@@ -22,10 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
   secret:"Mi palabra secreta de aplicación",
-  resave: true,
-  saveUnitialized: false
+  resave: false,
+  saveUnitialized: true
 }))
 
 //implementacion de cookies
