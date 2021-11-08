@@ -23,8 +23,8 @@ let userController = {
 					errors.message = "El campo del email no puede estar vacio";
 					res.locals.error = errors;
 					res.render("registracion")
-				} else if (req.body.password == "") {
-					errors.message = "El campo de la contraseña no puede estar vacio";
+				} else if (req.body.password == "" || req.body.password.length <= 3 ) {
+					errors.message = "La contraseña tiene que tener más de 3 caracteres";
 					res.locals.error = errors;
 					res.render("registracion")
 				} else if (emailExistente != "") {
@@ -71,9 +71,9 @@ let userController = {
 				})
 				.then(function (user) {
 					if (user != undefined) {
-						let passwordCorrecta = bcrypt.compareSync(req.body.password, user.password)
+						let passwordCorrecta = bcrypt.compareSync(req.body.password, user.contrasenia)
 						if (passwordCorrecta == true) {
-							req.session.user = user.email;
+							req.session.user = user;
 							if (req.body.recordame) {
 								res.cookie("usuarioId", user.id, {
 									maxAge: 1000 * 60 * 30
@@ -90,6 +90,11 @@ let userController = {
 					res.send(err)
 				})
 		}
+	},
+	logout: function(req,res){
+		req.session.destroy();
+		res.clearCookie("usuarioId");
+		res.redirect("/user/login");
 	}
 
 }

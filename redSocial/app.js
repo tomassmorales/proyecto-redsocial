@@ -32,11 +32,10 @@ app.use(session({
 //implementacion de cookies
 app.use(function (req, res, next) {
   if(req.cookies.usuarioId != undefined && req.session.user == undefined){
-    db.user.findByPk(req.cookies.usuarioId)
+    db.Usuario.findByPk(req.cookies.usuarioId)
     .then(user =>{
-      req.session.user = user.email
-      res.locals.user = req.session.user
-      return next()
+      req.session.user = user;
+      res.locals.user = req.session.user;
     })
   }  
   return next();

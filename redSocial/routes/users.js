@@ -14,4 +14,6 @@ router.post("/registracion", userController.registrar);
 
 router.post("/login", userController.logeo);
 
+router.post("/logout", userController.logout);
+
 module.exports = router;
