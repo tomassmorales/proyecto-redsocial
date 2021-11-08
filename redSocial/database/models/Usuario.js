@@ -39,6 +39,23 @@ module.exports = function(sequelize, dataTypes){
         underscored: false, //Si los nombres de las columnas en la db tienen guiones bajos en lugar de camelCase.        
     }
         const usuario = sequelize.define(alias, columnas, config);
-
+        
+         //Creo la relacion de muchos a muchos entre Usuarios y usuarios utilizando la tabla intermedia Followers
+        /*/usuario.associate = function(models){
+            usuario.belongsToMany(models.Usuario, {
+                as:"seguido",
+                through: "seguidores",
+                foreignKey: "seguidor",
+                otherKey: "seguido",
+                timestamps: false
+            })
+            usuario.belongsToMany(models.Usuario, {
+                as:"seguidor",
+                through: "seguidores",
+                foreignKey: "seguido",
+                otherKey: "seguidor",
+                timestamps: false
+            })
+        }/*/
         return usuario;
 }
