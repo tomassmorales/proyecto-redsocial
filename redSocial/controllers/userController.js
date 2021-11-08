@@ -89,8 +89,14 @@ let userController = {
 							}
 							return res.redirect("/")
 						} else {
-							return res.redirect("/user/registracion")
+							errors.message = "La contraseña es inválida";
+							res.locals.error = errors;
+							res.render("login");
 						}
+					} else {
+						errors.message = "No existe un usuario con este email";
+						res.locals.error = errors;
+						res.render("login");
 					}
 				})
 				.catch(err => {
