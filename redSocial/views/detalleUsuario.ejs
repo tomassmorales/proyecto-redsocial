@@ -7,7 +7,11 @@
 
 <body>
 
+    <% if (user != undefined ) { %>
     <%- include("./partials/headerLogueado") %>
+    <% } else { %>
+    <%- include("./partials/headerDeslogueado") %>
+    <% } %>
 
     <main>
         <div class="uk-section uk-section-small">

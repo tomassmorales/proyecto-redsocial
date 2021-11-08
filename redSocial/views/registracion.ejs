@@ -5,9 +5,11 @@
 <link rel="stylesheet" href="/css/registracion.css">
 
 <body>
-
+    <% if (user != undefined ) { %>
+    <%- include("./partials/headerLogueado") %>
+    <% } else { %>
     <%- include("./partials/headerDeslogueado") %>
-
+    <% } %>
     <main>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
@@ -15,8 +17,8 @@
                 <div class="divgrande">
                     <h2 class="subtitle">Registrarme</h2>
                     <form action="/user/registracion" method="POST">
-                        <% if(locals.error != undefined){ %> 
-                            <p><%= error.message%> </p>
+                        <% if(locals.error != undefined){ %>
+                        <p><%= error.message%> </p>
                         <% } %>
                         <label class="loggin">Nombre de Usuario:</label><br>
                         <input class="campo" type="text" id="fname" name="username"><br>

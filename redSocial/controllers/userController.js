@@ -4,7 +4,11 @@ let bcrypt = require('bcryptjs');
 let userController = {
 
 	registracion: function (req, res) {
-		res.render('registracion')
+		if (req.session.user == undefined) {
+			res.render('registracion')
+		} else {
+			res.redirect("/")
+		}
 	},
 	registrar: function (req, res) {
 		let errors = {}
@@ -23,7 +27,7 @@ let userController = {
 					errors.message = "El campo del email no puede estar vacio";
 					res.locals.error = errors;
 					res.render("registracion")
-				} else if (req.body.password == "" || req.body.password.length <= 3 ) {
+				} else if (req.body.password == "" || req.body.password.length <= 3) {
 					errors.message = "La contraseña tiene que tener más de 3 caracteres";
 					res.locals.error = errors;
 					res.render("registracion")
@@ -53,7 +57,11 @@ let userController = {
 
 	},
 	login: function (req, res) {
-		res.render('login')
+		if (req.session.user == undefined) {
+			res.render('login')
+		} else {
+			res.redirect("/")
+		}
 	},
 	logeo: function (req, res) {
 
@@ -91,7 +99,7 @@ let userController = {
 				})
 		}
 	},
-	logout: function(req,res){
+	logout: function (req, res) {
 		req.session.destroy();
 		res.clearCookie("usuarioId");
 		res.redirect("/user/login");

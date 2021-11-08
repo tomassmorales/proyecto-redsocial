@@ -6,31 +6,35 @@
 
 <body>
 
+    <% if (user != undefined ) { %>
+    <%- include("./partials/headerLogueado") %>
+    <% } else { %>
     <%- include("./partials/headerDeslogueado") %>
+    <% } %>
 
     <main>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
 
-                    <div class="divgrande">
-                        <h2 class="subtitle">Login</h2>
-                        <form class="formulario" action="/user/login" method="POST">
-                            <% if(locals.error != undefined){ %> 
-                                <p><%= error.message %> </p>
-                            <% } %> 
-                            <label class="loggin">Email:</label><br>
-                            <input class="campo" type="email" id="fname" name="email"><br>
-                            <label class="loggin">Contraseña:</label><br>
-                            <input class="campo" type="password" id="lname" name="password"><br>
-                            <label for="">Recordame</label> <input type="checkbox" name="recordame">
-                            <!-- <h3 class="subtitle">¿Olvidaste tu contraseña?</h3>
+                <div class="divgrande">
+                    <h2 class="subtitle">Login</h2>
+                    <form class="formulario" action="/user/login" method="POST">
+                        <% if(locals.error != undefined){ %>
+                        <p><%= error.message %> </p>
+                        <% } %>
+                        <label class="loggin">Email:</label><br>
+                        <input class="campo" type="email" id="fname" name="email"><br>
+                        <label class="loggin">Contraseña:</label><br>
+                        <input class="campo" type="password" id="lname" name="password"><br>
+                        <label for="">Recordame</label> <input type="checkbox" name="recordame">
+                        <!-- <h3 class="subtitle">¿Olvidaste tu contraseña?</h3>
                             <label class="loggin">Correo electrónico:</label><br>
                             <input class="campo" type="text" id="lname" name="lname"><br>
                             <label class="loggin">Numero de teléfono:</label><br>
                             <input class="campo" type="text" id="lname" name="lname"><br> -->
-                            <button>ENTRAR</button>
-                        </form>
-                    </div>
+                        <button>ENTRAR</button>
+                    </form>
+                </div>
 
 
                 </form>
