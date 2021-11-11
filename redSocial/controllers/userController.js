@@ -133,10 +133,10 @@ let userController = {
 	    },
 	    detail: function(req,res){
 		db.Usuario.findByPk(req.params.id,{
-			include: [/*{association: "seguidor"}*/ {association: "seguido"}]
+			include: [{association: "seguidor"}, {association: "seguido"}]
 		    })
 		    .then(detail => {
-			return res.send(detail)
+			// return res.send(detail)
 			let loSigue = false
 			for(let i = 0; i < detail.seguidor.length; i++){
 			    if(req.session.user.id == detail.seguidor[i].id){
