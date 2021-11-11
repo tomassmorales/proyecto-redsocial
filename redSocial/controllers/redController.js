@@ -7,7 +7,7 @@ const posteos = require("../data/posteos");
 const comentarios = require("../data/comentarios");
 const db = require('../database/models');
 const reds = db.usuarios;
-const op = db.sequelize.Op;
+const op = db.Sequelize.Op;
 
 var red = {
     index: function (req, res) {
@@ -182,15 +182,6 @@ var red = {
     },
     editarPerfil: function (req, res) {
         res.render('editarPerfil')
-    },
-    miPerfil: function (req, res) {
-        /*Acá hay que hacer algo parecido a detalleUsuario pero en base al id del usuario logeado */
-        let postsUsuario = posteos.lista;
-        let listaUsuarios = usuario.lista;
-        res.render('miPerfil', {
-            users: listaUsuarios,
-            posts: postsUsuario
-        })
     },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;

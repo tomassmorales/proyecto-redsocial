@@ -1,5 +1,9 @@
 let db = require('../database/models');
 let bcrypt = require('bcryptjs');
+const usuario = require("../data/datos.js");
+const posteos = require("../data/posteos");
+const comentarios = require("../data/comentarios");
+const op = db.Sequelize.Op;
 
 let userController = {
 
@@ -109,8 +113,69 @@ let userController = {
 		req.session.destroy();
 		res.clearCookie("usuarioId");
 		res.redirect("/user/login");
-	}
-
+	},
+	miPerfil: function (req, res) {
+		/*Acá hay que hacer algo parecido a detalleUsuario pero en base al id del usuario logeado */
+		if(req.session.user == undefined){
+		    res.redirect("/user/login")
+		}else{
+		    db.Usuario.findByPk(req.session.user.id)
+		    .then(user => {
+			let postsUsuario = posteos.lista;
+			let listaUsuarios = usuario.lista;
+			res.render("miPerfil", {
+			    user: user,
+			    users: listaUsuarios,
+			    posts: postsUsuario
+			})
+		    })
+		}
+	    },
+	    detail: function(req,res){
+		db.Usuario.findByPk(req.params.id,{
+			include: [/*{association: "seguidor"}*/ {association: "seguido"}]
+		    })
+		    .then(detail => {
+			return res.send(detail)
+			let loSigue = false
+			for(let i = 0; i < detail.seguidor.length; i++){
+			    if(req.session.user.id == detail.seguidor[i].id){
+				loSigue = true
+			    }
+			}
+			res.render("detail",{detail: detail, loSigue: loSigue} )
+		    })
+	    },
+	    follow: function(req,res){
+		if(req.session.user != undefined){
+			db.Seguidor.create({
+			    seguidor: req.session.user.id,
+			    seguido: req.params.id
+			})
+			.then(user => {
+			    res.redirect("/user/detail/" + req.params.id )
+			})
+	    
+		    } else {
+			res.redirect("/user/login")
+		    }
+	    },
+	    unfollow: function(req, res){
+		if(req.session.user != undefined){
+		    db.Seguidor.destroy({
+			where: {
+			    [op.and]: [
+				{ seguidor: req.session.user.id },
+				{ seguido: req.params.id }]
+			}
+		    })
+		    .then(user => {
+			res.redirect("/user/detail/" + req.params.id)
+		    })
+		} else {
+		    res.redirect("/user/login")
+		}
+	    },
 }
 
 module.exports = userController;

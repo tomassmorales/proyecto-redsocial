@@ -17,7 +17,7 @@ router.get('/editarPerfil', redController.editarPerfil);
 
 // router.get('/login', redController.login);
 
-router.get('/miPerfil', redController.miPerfil);
+// router.get('/miPerfil', redController.miPerfil);
 
 // router.get('/registracion', redController.registracion);
 
