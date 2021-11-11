@@ -41,21 +41,29 @@ module.exports = function(sequelize, dataTypes){
         const usuario = sequelize.define(alias, columnas, config);
         
          //Creo la relacion de muchos a muchos entre Usuarios y usuarios utilizando la tabla intermedia Followers
-        /*/usuario.associate = function(models){
-            usuario.belongsToMany(models.Usuario, {
-                as:"seguido",
-                through: "seguidores",
-                foreignKey: "seguidor",
-                otherKey: "seguido",
-                timestamps: false
+        usuario.associate = function(models){
+            // usuario.belongsToMany(models.Usuario, {
+            //     as:"seguido",
+            //     through: "seguidores",
+            //     foreignKey: "seguidor",
+            //     otherKey: "seguido",
+            //     timestamps: false
+            // })
+            // usuario.belongsToMany(models.Usuario, {
+            //     as:"seguidor",
+            //     through: "seguidores",
+            //     foreignKey: "seguido",
+            //     otherKey: "seguidor",
+            //     timestamps: false
+            // }),
+            usuario.hasMany(models.Post, {
+                as: "posteos",
+                foreignKey: "usuario_id"
+            }),
+            usuario.hasMany(models.Comentarios, {
+                as: "comentarios",
+                foreignKey: "usuario_id"
             })
-            usuario.belongsToMany(models.Usuario, {
-                as:"seguidor",
-                through: "seguidores",
-                foreignKey: "seguido",
-                otherKey: "seguidor",
-                timestamps: false
-            })
-        }/*/
+        }
         return usuario;
 }
