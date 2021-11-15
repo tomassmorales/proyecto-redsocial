@@ -42,6 +42,14 @@ module.exports = function (sequelize, dataTypes) {
 
     //Creo la relacion de muchos a muchos entre Usuarios y usuarios utilizando la tabla intermedia Followers
     usuario.associate = function (models) {
+        usuario.hasMany(models.Post, {
+                as: "posteos",
+                foreignKey: "usuario_id"
+            })
+        usuario.hasMany(models.Comentarios, {
+                as: "comentarios",
+                foreignKey: "usuario_id"
+        })
         usuario.belongsToMany(models.Usuario, {
             as: "seguido",
             through: "seguidores",
@@ -55,14 +63,6 @@ module.exports = function (sequelize, dataTypes) {
             foreignKey: "seguido",
             otherKey: "seguidor",
             timestamps: false
-        })
-        usuario.hasMany(models.Post, {
-                as: "posteos",
-                foreignKey: "usuario_id"
-            })
-        usuario.hasMany(models.Comentarios, {
-                as: "comentarios",
-                foreignKey: "usuario_id"
         })
     }
     return usuario;
