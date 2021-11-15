@@ -12,7 +12,9 @@ router.get('/registracion', userController.registracion);
 
 router.get('/miPerfil', userController.miPerfil);
 
-router.get('/detail/:id', userController.detail);
+// router.get('/detail/:id', userController.detail);
+
+router.get('/detalleUsuario/:id', userController.detail);
 
 
 router.post("/registracion", userController.registrar);

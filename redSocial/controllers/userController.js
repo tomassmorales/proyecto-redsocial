@@ -146,7 +146,7 @@ let userController = {
 						loSigue = true
 					}
 				}
-				res.render("detail", {
+				res.render("detalleUsuario", {
 					detail: detail,
 					loSigue: loSigue
 				})
@@ -162,7 +162,7 @@ let userController = {
 					seguido: req.params.id
 				})
 				.then(user => {
-					res.redirect("/user/detail/" + req.params.id)
+					res.redirect("/user/detalleUsuario/" + req.params.id)
 				})
 
 		} else {
@@ -183,7 +183,7 @@ let userController = {
 					}
 				})
 				.then(user => {
-					res.redirect("/user/detail/" + req.params.id)
+					res.redirect("/user/detalleUsuario/" + req.params.id)
 				})
 		} else {
 			res.redirect("/user/login")

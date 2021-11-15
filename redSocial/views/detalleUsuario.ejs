@@ -18,39 +18,30 @@
             <div class="uk-container uk-container-small">
                 <section class="info-usuario uk-flex uk-flex-around uk-width-1-1">
                     <div class="uk-width-1-3 uk-flex uk-flex-center uk-flex-middle">
-                        <img src=<%= fotoPerfil %> alt="foto de perfil" class="fotoo-perfil">
+                        <img src="" alt="foto de perfil" class="fotoo-perfil">
                     </div>
                     <div class="uk-width-2-3 uk-flex uk-flex-column uk-flex-around">
                         <div class="uk-flex uk-flex-middle">
-                            <h3 class="uk-margin-remove"><%= nombreUser %> </h3>
-                            <button class="uk-button uk-button-small uk-button-primary uk-margin-left">Seguir</button>
+                            <h3 class="uk-margin-remove"><%= detail.nombreDeUsuario%></h3>
+                            <%  if( loSigue) { %>
+                            <form action="/user/dejarSeguir/<%= detail.id %> " method="POST">
+                                <button class="uk-button uk-button-small uk-button-primary uk-margin-left">Dejar de
+                                    Seguir</button>
+                            </form>
+                            <%  } else { %>
+                            <form action="/user/seguir/<%= detail.id %> " method="POST">
+                                <button
+                                    class="uk-button uk-button-small uk-button-primary uk-margin-left">Seguir</button>
+                            </form>
+                            <%  } %>
                         </div>
                         <div>
                             <ul class="red-usuario uk-flex uk-flex-between uk-width-1-2 infodelusuario">
-                                <li><%= numPosts %> posts</li>
-                                <li><%= seguidores %> seguidores</li>
-                                <li><%= seguidos %> seguidos</li>
+                                <li>posts</li>
+                                <li>seguidores</li>
+                                <li>seguidos</li>
                             </ul>
                         </div>
-                    </div>
-                </section>
-                <section class="muro uk-flex uk-flex-middle uk-flex-center">
-                    <div class="uk-grid uk-child-width-1-3 uk-width-1-1 uk-margin-remove" uk-grid>
-                        <% let postDeUsuario = []; 
-                        for(let i = 0; i < posts.length; i++) { 
-                            if(posts[i].usuario_id == user) {
-                                postDeUsuario.push(posts[i])
-                            } 
-                         }
-                        for(let i = 0; i < postDeUsuario.length; i++){ %>
-                        <div
-                            class="uk-card uk-card-hover uk-card-body uk-flex uk-flex-column uk-flex-middle uk-flex-center ">
-                            <a href="/detallePost/<%= postDeUsuario[i].id %> " class="link-detalle">
-                                <img src="<%= postDeUsuario[i].imagen %>" alt="foto de perfil" class="foto-perfil">
-                                <p class="uk-text-center detapostusuario"><%= postDeUsuario[i].descripción %> </p>
-                            </a>
-                        </div>
-                        <% } %>
                     </div>
                 </section>
             </div>

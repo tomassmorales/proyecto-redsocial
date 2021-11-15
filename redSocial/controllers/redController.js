@@ -142,44 +142,44 @@ var red = {
             
         })
     },
-    detalleUsuario: function (req, res) {
-        let idUsuario = req.params.id;
-        let posteosUsuario = db.Post.findAll({
-            where: [
-                {'usuario_id': idUsuario}
-            ],
-            order: [
-                ['fecha_creacion','DESC']
-            ],
-        })
-        /*Falta traer la información del usuario para luego hacer un promise all y llevar toda la información a la pagina*/
+    // detalleUsuario: function (req, res) {
+    //     let idUsuario = req.params.id;
+    //     let posteosUsuario = db.Post.findAll({
+    //         where: [
+    //             {'usuario_id': idUsuario}
+    //         ],
+    //         order: [
+    //             ['fecha_creacion','DESC']
+    //         ],
+    //     })
+    //     /*Falta traer la información del usuario para luego hacer un promise all y llevar toda la información a la pagina*/
 
-        let postsUsuario = posteos.lista;
-        let usuarios = usuario.lista;
-        let nombreUsuario;
-        let seguidoresUsuario;
-        let seguidosUsuario;
-        let fotoPerfilUsuario;
-        let numeroPostsUsuario;
-        for (let i = 0; i < usuarios.length; i++) {
-            if (idUsuario == usuarios[i].id) {
-                nombreUsuario = usuarios[i].nombreDeUsuario;
-                seguidoresUsuario = usuarios[i].seguidores;
-                seguidosUsuario = usuarios[i].seguidos;
-                fotoPerfilUsuario = usuarios[i].imagenPerfil;
-                numeroPostsUsuario = usuarios[i].numeroDePublicaciones;
-            };
-        };
-        res.render('detalleUsuario', {
-            nombreUser: nombreUsuario,
-            seguidores: seguidoresUsuario,
-            seguidos: seguidosUsuario,
-            fotoPerfil: fotoPerfilUsuario,
-            numPosts: numeroPostsUsuario,
-            user: idUsuario,
-            posts: postsUsuario
-        })
-    },
+    //     let postsUsuario = posteos.lista;
+    //     let usuarios = usuario.lista;
+    //     let nombreUsuario;
+    //     let seguidoresUsuario;
+    //     let seguidosUsuario;
+    //     let fotoPerfilUsuario;
+    //     let numeroPostsUsuario;
+    //     for (let i = 0; i < usuarios.length; i++) {
+    //         if (idUsuario == usuarios[i].id) {
+    //             nombreUsuario = usuarios[i].nombreDeUsuario;
+    //             seguidoresUsuario = usuarios[i].seguidores;
+    //             seguidosUsuario = usuarios[i].seguidos;
+    //             fotoPerfilUsuario = usuarios[i].imagenPerfil;
+    //             numeroPostsUsuario = usuarios[i].numeroDePublicaciones;
+    //         };
+    //     };
+    //     res.render('detalleUsuario', {
+    //         nombreUser: nombreUsuario,
+    //         seguidores: seguidoresUsuario,
+    //         seguidos: seguidosUsuario,
+    //         fotoPerfil: fotoPerfilUsuario,
+    //         numPosts: numeroPostsUsuario,
+    //         user: idUsuario,
+    //         posts: postsUsuario
+    //     })
+    // },
     editarPerfil: function (req, res) {
         res.render('editarPerfil')
     },
