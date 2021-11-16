@@ -1,59 +1,26 @@
-// const red = require('../data/');
-const {
-    lista
-} = require("../data/datos.js");
-const usuario = require("../data/datos.js");
-const posteos = require("../data/posteos");
-const comentarios = require("../data/comentarios");
 const db = require('../database/models');
-const reds = db.usuarios;
 const op = db.Sequelize.Op;
 
 var red = {
     index: function (req, res) {
 
-        let posts = db.Post.findAll({
-            order: [
-                [
-                    "fecha_creacion", "ASC"
-                ],
-                [
-                    "usuario_id", "DESC"
-                ]
-            ],
-            limit: 10
+        db.Post.findAll({
+            include:[{
+                association:"usuario"
+            },{association:"comentarios",
+        include:{
+            association:"comentario_usuario"
+        }}]
         })
-        /*let coment = db.Comentario.findAll({
-            order: [
-                [
-                    "fecha_creacion", "ASC"
-                ],
-                [
-                    "usuario_id", "DESC"
-                ]
-            ],
-            limit: 4
-        }) */
-        /*let user = db.Usuario.findAll({
-            order: [
-                [
-                    "usuario_id", "DESC"
-                ]
-            ],
-            limit: 10
-        }) */
-/*falta guardar en una variable los usuarios y los comentarios para mandarlos con un promise all al index*/
-        listaPosteos = posteos.lista;
-
-        usuarios = usuario.lista;
-
-        listaComentarios = comentarios.lista;
-
-        res.render('index', {
-            posteos: listaPosteos,
-            usuarios: usuarios,
-            comentario: listaComentarios
+        .then(data => {
+        //res.send(data)
+           res.render('index', {
+            posteos: data,
         })
+        })
+       
+       
+        
     },
     agregarPost: function (req, res) {
         db.Post.findAll()

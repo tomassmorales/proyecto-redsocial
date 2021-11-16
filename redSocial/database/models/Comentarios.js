@@ -30,11 +30,11 @@ module.exports = function (sequelize, dataTypes) {
     comentarios.associate = function (models) {
         comentarios.belongsTo(models.Post, {
             as: "post",
-            foreingKey: "posteo_id"
+            foreignKey: "posteo_id"
         }),
         comentarios.belongsTo(models.Usuario, {
             as: "comentario_usuario",
-            foreingKey: "usuario_id"
+            foreignKey: "usuario_id"
         })
     } //hay que hacer lo mismo para usuario y post
 
