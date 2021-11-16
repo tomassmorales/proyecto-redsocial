@@ -57,57 +57,22 @@ var red = {
         res.redirect('detallePost');
     },
     detallePost: function (req, res) {
-        let idPosteo = req.params.id;
-        let idComentario = req.params.id;
-        let idUsuario = req.params.id;
-
-        let usuario = db.Usuario.findByPk(idUsuario);
-        let posteo = db.Post.findByPk(idPosteo);
-        let comentario = db.Comentarios.findByPk(idComentario);
-        /*Falta traer la información de los comentarios del posteo y el usuario que lo hizo para hacer un promise all y mandar todo*/
-
-
-        let listaPosteos = posteos.lista;
-        let post = [];
-        let coment = [];
-        let listaComentarios = comentarios.lista;
-        let usuarioc = usuario.lista;
-        let userName;
-        let imagen = [];
-        
-
-
-        for (let i = 0; i < listaPosteos.length; i++) {
-            if (idPosteo == listaPosteos[i].id) {
-                post.push(listaPosteos[i]);
-            }
-        };
-        for (let k = 0; k < listaComentarios.length; k++) {
-                coment.push(listaComentarios[k]);
-        };
-        for (let p = 0; p < usuarioc.length; p++) {
-            if (idPosteo == usuarioc[p].id) {
-                userName = usuarioc[p].nombreDeUsuario;
-                imagen.push(usuarioc[p].imagenPerfil)
-            };
-             
-        };
-        /*/for (let l =0; l <usuarioc.length; l++) {
-            if (idPosteo == usuarioc[l].id) {
-                
-            imagenPerfil = usuarioc[l].imagenPerfil;     
-            }
-        }/*/
-
-        res.render('detallePost', {
-            idPost: idPosteo,
-            posteo: post,
-            comentario: coment,
-            usuario: usuarioc,
-            user: userName,
-            imagen: imagen,
-            
+        db.Post.findByPk(req.params.id,{
+            include:[{
+                association:"usuario"
+            },{association:"comentarios",
+        include:{
+            association:"comentario_usuario"
+        }}]
         })
+        .then(data => {
+        //res.send(data)
+           res.render('detallePost', {
+            post: data,
+        })
+        })
+       
+
     },
     // detalleUsuario: function (req, res) {
     //     let idUsuario = req.params.id;
