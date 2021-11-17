@@ -1,32 +1,80 @@
+const usuario = require('../data/datos');
 const db = require('../database/models');
 const op = db.Sequelize.Op;
 
 var red = {
     index: function (req, res) {
-
-        db.Post.findAll({
-                include: [{
-                    association: "usuario"
-                }, {
-                    association: "comentarios",
-                    include: {
-                        association: "comentario_usuario"
-                    }
-                }],
-                order: [
-                    ["fecha_creacion", "DESC"],
-                ],
-                limit: 10
-            })
-            .then(data => {
-                //res.send(data)
-                res.render('index', {
-                    posteos: data,
+        if (req.session.user == undefined) {
+            db.Post.findAll({
+                    include: [{
+                        association: "usuario"
+                    }, {
+                        association: "comentarios",
+                        include: {
+                            association: "comentario_usuario"
+                        }
+                    }],
+                    order: [
+                        ["fecha_creacion", "DESC"],
+                    ],
+                    limit: 10
                 })
-            })
-
-
-
+                .then(data => {
+                    //res.send(data)
+                    res.render('index', {
+                        posteos: data,
+                    })
+                })
+        } else {
+            db.Usuario.findByPk(req.session.user.id, {
+                    include: [{
+                            association: "seguido"
+                        },
+                        {
+                            association: "seguidor"
+                        }
+                    ]
+                })
+                .then(usuario => {
+                    db.Post.findAll({
+                            include: [{
+                                association: "usuario"
+                            }, {
+                                association: "comentarios",
+                                include: {
+                                    association: "comentario_usuario"
+                                },
+                            }, ],
+                            order: [
+                                ["fecha_creacion", "DESC"],
+                            ],
+                            limit: 10
+                        })
+                        .then(data => {
+                            if (usuario.seguido.length > 2) {
+                                let posteos = [];
+                                for (let i = 0; i < data.length; i++) {
+                                    for (let k = 0; k < usuario.seguido.length; k++) {
+                                        if (data[i].usuario.id == usuario.seguido[k].id) {
+                                            posteos.push(data[i])
+                                        }
+                                    }
+                                }
+                                // return res.send(posteos);
+                                res.render('index', {
+                                    posteos: posteos,
+                                })
+                            } else {
+                                res.render('index', {
+                                    posteos: data,
+                                })
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                })
+        }
     },
     agregarPost: function (req, res) {
         db.Post.findAll()

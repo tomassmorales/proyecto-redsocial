@@ -153,16 +153,21 @@ let userController = {
 			})
 			.then(detail => {
 				// return res.send(detail)
-				let loSigue = false
-				for (let i = 0; i < detail.seguidor.length; i++) {
-					if (req.session.user.id == detail.seguidor[i].id) {
-						loSigue = true
+				if (req.session.user != undefined) {
+					let loSigue = false
+					for (let i = 0; i < detail.seguidor.length; i++) {
+						if (req.session.user.id == detail.seguidor[i].id) {
+							loSigue = true
+						}
 					}
+
+					res.render("detalleUsuario", {
+						detail: detail,
+						loSigue: loSigue
+					})
+				} else {
+					res.redirect("/user/login")
 				}
-				res.render("detalleUsuario", {
-					detail: detail,
-					loSigue: loSigue
-				})
 			})
 			.catch(error => {
 				console.log(error);
