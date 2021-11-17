@@ -91,3 +91,8 @@ INSERT INTO comentarios VALUES(default,9,2,"nasheee","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,9,3,"Que copado!!","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,10,4,"Bien ahi","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,10,5,"Que rico ese lugar","2021-11-03 08:00:00");
+
+-- Para que funcione el follow-me 
+
+ALTER TABLE usuarios DROP seguidores;
+ALTER TABLE usuarios DROP seguidos;

@@ -5,73 +5,83 @@ var red = {
     index: function (req, res) {
 
         db.Post.findAll({
-            include:[{
-                association:"usuario"
-            },{association:"comentarios",
-        include:{
-            association:"comentario_usuario"
-        }}]
-        })
-        .then(data => {
-        //res.send(data)
-           res.render('index', {
-            posteos: data,
-        })
-        })
-       
-       
-        
+                include: [{
+                    association: "usuario"
+                }, {
+                    association: "comentarios",
+                    include: {
+                        association: "comentario_usuario"
+                    }
+                }],
+                order: [
+                    ["fecha_creacion", "DESC"],
+                ],
+                limit: 10
+            })
+            .then(data => {
+                //res.send(data)
+                res.render('index', {
+                    posteos: data,
+                })
+            })
+
+
+
     },
     agregarPost: function (req, res) {
         db.Post.findAll()
-        .then(Post => {
-            res.render('agregarPost',{Post})
-        })
-        .catch(err => {
-            console.log(err)
-            res.send(err)
-        })
+            .then(Post => {
+                res.render('agregarPost', {
+                    Post
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
         //res.render('agregarPost')
     },
-    storePost: function(req,res){
+    storePost: function (req, res) {
         db.Post.agregarPost({
-            id: req.body.id,
-            usuario_id: req.body.usuario_id,
-            descripcion: req.body.descripcion,
-            fecha_creacion: req.body.fecha_creacion,
-            descripcion: req.body.descripcion,
-            imagen: req.body.imagen
-        })
-        .then(movie => {
-        res.redirect("detallePost");
-        })
-        .catch(err => {
-            console.log(err);
-            res.send(err)
-        })
+                id: req.body.id,
+                usuario_id: req.body.usuario_id,
+                descripcion: req.body.descripcion,
+                fecha_creacion: Date.now(),
+                descripcion: req.body.descripcion,
+                imagen: req.body.imagen
+            })
+            .then(movie => {
+                res.redirect("detallePost");
+            })
+            .catch(err => {
+                console.log(err);
+                res.send(err)
+            })
     },
-    agregarComentario:function (req, res) {
+    agregarComentario: function (req, res) {
         res.render('agregarComentario');
     },
-    storeComentario:function (req, res) {
+    storeComentario: function (req, res) {
         res.redirect('detallePost');
     },
     detallePost: function (req, res) {
-        db.Post.findByPk(req.params.id,{
-            include:[{
-                association:"usuario"
-            },{association:"comentarios",
-        include:{
-            association:"comentario_usuario"
-        }}]
-        })
-        .then(data => {
-        //res.send(data)
-           res.render('detallePost', {
-            post: data,
-        })
-        })
-       
+        db.Post.findByPk(req.params.id, {
+                include: [{
+                    association: "usuario"
+                }, {
+                    association: "comentarios",
+                    include: {
+                        association: "comentario_usuario"
+                    }
+                }]
+            })
+            .then(data => {
+                //res.send(data)
+                res.render('detallePost', {
+                    post: data,
+                })
+            })
+
 
     },
     // detalleUsuario: function (req, res) {
