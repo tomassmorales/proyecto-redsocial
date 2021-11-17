@@ -119,7 +119,17 @@ let userController = {
 		if (req.session.user == undefined) {
 			res.redirect("/user/login")
 		} else {
-			db.Usuario.findByPk(req.session.user.id)
+			db.Usuario.findByPk(req.session.user.id, {
+
+					include: [{
+							association: "seguidor"
+						},
+						{
+							association: "seguido"
+						}
+					]
+
+				})
 				.then(user => {
 					let postsUsuario = posteos.lista;
 					let listaUsuarios = usuario.lista;
@@ -133,10 +143,13 @@ let userController = {
 	},
 	detail: function (req, res) {
 		db.Usuario.findByPk(req.params.id, {
-				include: [
-				{association: "seguidor"},
-				{association: "seguido"}
-			]
+				include: [{
+						association: "seguidor"
+					},
+					{
+						association: "seguido"
+					}
+				]
 			})
 			.then(detail => {
 				// return res.send(detail)
@@ -151,7 +164,7 @@ let userController = {
 					loSigue: loSigue
 				})
 			})
-			.catch(error=>{
+			.catch(error => {
 				console.log(error);
 			})
 	},
