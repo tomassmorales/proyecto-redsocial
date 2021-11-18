@@ -47,7 +47,8 @@ let userController = {
 							email: req.body.email,
 							contrasenia: passwordEncriptada,
 							fechaNacimiento: req.body.fechaNacimiento,
-							createdAt: Date.now()
+							createdAt: Date.now(),
+							fotoPerfil: req.file.filename
 						})
 						.then(user => {
 							res.redirect('/')

@@ -35,6 +35,7 @@ app.use(function (req, res, next) {
     db.Usuario.findByPk(req.cookies.usuarioId)
     .then(user =>{
       req.session.user = user;
+      // req.session.fotoPerfil = user.fotoPerfil;
       res.locals.user = req.session.user;
     })
   }  
@@ -44,7 +45,8 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   res.locals.user = null
   if(req.session.user != undefined){
-    res.locals.user = req.session.user
+    res.locals.user = req.session.user;
+    // res.locals.avatar = req.session.fotoPerfil;
   }
   return next()
 })
