@@ -225,30 +225,56 @@ let userController = {
 		}
 	},
 	procesoEditar: function (req, res) {
-		db.Usuario.update({
-				name: req.body.username,
-				email: req.body.email,
-				fotoPerfil: req.file.filename
-			}, {
-				where: {
-					email: req.body.email
-				}
-			})
-			.then(user => {
-				db.Usuario.findOne({
-						where: {
-							email: req.body.email
-						}
-					})
-					.then(user => {
-						req.session.user = user;
-						res.locals.user = req.session.user;
-						res.redirect('/user/miPerfil');
-					})
-			})
-			.catch(function (error) {
-				res.send(error)
-			})
+		if (req.file.filename != undefined) {
+			db.Usuario.update({
+					name: req.body.username,
+					email: req.body.email,
+					fotoPerfil: req.file.filename
+				}, {
+					where: {
+						email: req.body.email
+					}
+				})
+				.then(user => {
+					db.Usuario.findOne({
+							where: {
+								email: req.body.email
+							}
+						})
+						.then(user => {
+							req.session.user = user;
+							res.locals.user = req.session.user;
+							res.redirect('/user/miPerfil');
+						})
+				})
+				.catch(function (error) {
+					res.send(error)
+				})
+		} else {
+			db.Usuario.update({
+					name: req.body.username,
+					email: req.body.email,
+				}, {
+					where: {
+						email: req.body.email
+					}
+				})
+				.then(user => {
+					db.Usuario.findOne({
+							where: {
+								email: req.body.email
+							}
+						})
+						.then(user => {
+							req.session.user = user;
+							res.locals.user = req.session.user;
+							res.redirect('/user/miPerfil');
+						})
+				})
+				.catch(function (error) {
+					res.send(error)
+				})
+		}
 	}
 }
 
