@@ -225,10 +225,10 @@ let userController = {
 		}
 	},
 	procesoEditar: function (req, res) {
-		if (req.file.filename != undefined) {
+		if (req.file != undefined) {
 			db.Usuario.update({
-					name: req.body.username,
-					email: req.body.email,
+					nombreDeUsuario: req.body.username,
+					// email: req.body.email,
 					fotoPerfil: req.file.filename
 				}, {
 					where: {
@@ -252,7 +252,7 @@ let userController = {
 				})
 		} else {
 			db.Usuario.update({
-					name: req.body.username,
+					nombreDeUsuario: req.body.username,
 					email: req.body.email,
 				}, {
 					where: {
