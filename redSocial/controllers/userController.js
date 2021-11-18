@@ -208,6 +208,48 @@ let userController = {
 			res.redirect("/user/login")
 		}
 	},
+	editarPerfil: function (req, res) {
+		if (req.session.user != undefined) {
+			db.Usuario.findOne({
+					where: {
+						email: req.session.user.email
+					}
+				})
+				.then(function (usuario) {
+					res.render("editarPerfil", {
+						user: usuario
+					});
+				})
+		} else {
+			res.redirect("/user/login");
+		}
+	},
+	procesoEditar: function (req, res) {
+		db.Usuario.update({
+				name: req.body.username,
+				email: req.body.email,
+				fotoPerfil: req.file.filename
+			}, {
+				where: {
+					email: req.body.email
+				}
+			})
+			.then(user => {
+				db.Usuario.findOne({
+						where: {
+							email: req.body.email
+						}
+					})
+					.then(user => {
+						req.session.user = user;
+						res.locals.user = req.session.user;
+						res.redirect('/user/miPerfil');
+					})
+			})
+			.catch(function (error) {
+				res.send(error)
+			})
+	}
 }
 
 module.exports = userController;

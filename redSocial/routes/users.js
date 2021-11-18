@@ -31,6 +31,8 @@ router.get('/miPerfil', userController.miPerfil);
 
 router.get('/detalleUsuario/:id', userController.detail);
 
+router.get('/editarPerfil', userController.editarPerfil);
+
 
 router.post("/registracion", upload.single("avatar"), userController.registrar);
 
@@ -40,6 +42,8 @@ router.post("/logout", userController.logout);
 
 router.post('/seguir/:id', userController.follow);
 
-router.post('/dejarSeguir/:id', userController.unfollow)
+router.post('/dejarSeguir/:id', userController.unfollow);
+
+router.post("/editarPerfil",upload.single("avatar"),userController.procesoEditar);
 
 module.exports = router;

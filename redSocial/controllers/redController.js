@@ -170,9 +170,6 @@ var red = {
     //         posts: postsUsuario
     //     })
     // },
-    editarPerfil: function (req, res) {
-        res.render('editarPerfil')
-    },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
         /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:

@@ -13,7 +13,7 @@ router.get('/detallePost/:id?', redController.detallePost);
 
 // router.get('/detalleUsuario/:id?', redController.detalleUsuario);
 
-router.get('/editarPerfil', redController.editarPerfil);
+// router.get('/editarPerfil', redController.editarPerfil);
 
 // router.get('/login', redController.login);
 
