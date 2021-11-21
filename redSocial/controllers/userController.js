@@ -143,36 +143,40 @@ let userController = {
 		}
 	},
 	detail: function (req, res) {
-		db.Usuario.findByPk(req.params.id, {
-				include: [{
-						association: "seguidor"
-					},
-					{
-						association: "seguido"
-					}
-				]
-			})
-			.then(detail => {
-				// return res.send(detail)
-				if (req.session.user != undefined) {
-					let loSigue = false
-					for (let i = 0; i < detail.seguidor.length; i++) {
-						if (req.session.user.id == detail.seguidor[i].id) {
-							loSigue = true
+		if (req.session.user.id != req.params.id) {
+			db.Usuario.findByPk(req.params.id, {
+					include: [{
+							association: "seguidor"
+						},
+						{
+							association: "seguido"
 						}
-					}
+					]
+				})
+				.then(detail => {
+					// return res.send(detail)
+					if (req.session.user != undefined) {
+						let loSigue = false
+						for (let i = 0; i < detail.seguidor.length; i++) {
+							if (req.session.user.id == detail.seguidor[i].id) {
+								loSigue = true
+							}
+						}
 
-					res.render("detalleUsuario", {
-						detail: detail,
-						loSigue: loSigue
-					})
-				} else {
-					res.redirect("/user/login")
-				}
-			})
-			.catch(error => {
-				console.log(error);
-			})
+						res.render("detalleUsuario", {
+							detail: detail,
+							loSigue: loSigue
+						})
+					} else {
+						res.redirect("/user/login")
+					}
+				})
+				.catch(error => {
+					console.log(error);
+				})
+		} else {
+			res.redirect("/user/miPerfil")
+		}
 	},
 	follow: function (req, res) {
 		if (req.session.user != undefined) {
