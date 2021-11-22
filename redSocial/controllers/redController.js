@@ -120,10 +120,10 @@ var red = {
         /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:
         movie.findAll({
             where: [
-                {'title': {[op.like]:`%${search}%`}}
+                {'descripcion': {[op.like]:`%${busqueda}%`}}
             ],
             order: [
-                ['rating','ASC']
+                ['fecha','ASC']
             ],
             limit:5,
             offset:0
