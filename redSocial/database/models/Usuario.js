@@ -18,12 +18,12 @@ module.exports = function (sequelize, dataTypes) {
         contrasenia: {
             type: dataTypes.STRING
         },
-        seguidores: {
-            type: dataTypes.INTEGER,
-        },
-        seguidos: {
-            type: dataTypes.INTEGER,
-        },
+        // seguidores: {
+        //     type: dataTypes.INTEGER,
+        // },
+        // seguidos: {
+        //     type: dataTypes.INTEGER,
+        // },
         fechaNacimiento: {
             type: dataTypes.DATE
         },

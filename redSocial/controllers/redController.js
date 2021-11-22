@@ -1,77 +1,135 @@
+const usuario = require('../data/datos');
 const db = require('../database/models');
 const op = db.Sequelize.Op;
 
 var red = {
     index: function (req, res) {
-
-        db.Post.findAll({
-            include:[{
-                association:"usuario"
-            },{association:"comentarios",
-        include:{
-            association:"comentario_usuario"
-        }}]
-        })
-        .then(data => {
-        //res.send(data)
-           res.render('index', {
-            posteos: data,
-        })
-        })
-       
-       
-        
+        if (req.session.user == undefined) {
+            db.Post.findAll({
+                    include: [{
+                        association: "usuario"
+                    }, {
+                        association: "comentarios",
+                        include: {
+                            association: "comentario_usuario"
+                        }
+                    }],
+                    order: [
+                        ["fecha_creacion", "DESC"],
+                    ],
+                    limit: 10
+                })
+                .then(data => {
+                    //res.send(data)
+                    res.render('index', {
+                        posteos: data,
+                    })
+                })
+        } else {
+            db.Usuario.findByPk(req.session.user.id, {
+                    include: [{
+                            association: "seguido"
+                        },
+                        {
+                            association: "seguidor"
+                        }
+                    ]
+                })
+                .then(usuario => {
+                    db.Post.findAll({
+                            include: [{
+                                association: "usuario"
+                            }, {
+                                association: "comentarios",
+                                include: {
+                                    association: "comentario_usuario"
+                                },
+                            }, ],
+                            order: [
+                                ["fecha_creacion", "DESC"],
+                            ],
+                            limit: 10
+                        })
+                        .then(data => {
+                            if (usuario.seguido.length > 2) {
+                                let posteos = [];
+                                for (let i = 0; i < data.length; i++) {
+                                    for (let k = 0; k < usuario.seguido.length; k++) {
+                                        if (data[i].usuario.id == usuario.seguido[k].id) {
+                                            posteos.push(data[i])
+                                        }
+                                    }
+                                }
+                                // return res.send(posteos);
+                                res.render('index', {
+                                    posteos: posteos,
+                                })
+                            } else {
+                                res.render('index', {
+                                    posteos: data,
+                                })
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                })
+        }
     },
     agregarPost: function (req, res) {
         db.Post.findAll()
-        .then(Post => {
-            res.render('agregarPost',{Post})
-        })
-        .catch(err => {
-            console.log(err)
-            res.send(err)
-        })
+            .then(Post => {
+                res.render('agregarPost', {
+                    Post
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
         //res.render('agregarPost')
     },
-    storePost: function(req,res){
+    storePost: function (req, res) {
         db.Post.agregarPost({
-            id: req.body.id,
-            usuario_id: req.body.usuario_id,
-            descripcion: req.body.descripcion,
-            fecha_creacion: req.body.fecha_creacion,
-            descripcion: req.body.descripcion,
-            imagen: req.body.imagen
-        })
-        .then(movie => {
-        res.redirect("detallePost");
-        })
-        .catch(err => {
-            console.log(err);
-            res.send(err)
-        })
+                id: req.body.id,
+                usuario_id: req.body.usuario_id,
+                descripcion: req.body.descripcion,
+                fecha_creacion: Date.now(),
+                descripcion: req.body.descripcion,
+                imagen: req.body.imagen
+            })
+            .then(movie => {
+                res.redirect("detallePost");
+            })
+            .catch(err => {
+                console.log(err);
+                res.send(err)
+            })
     },
-    agregarComentario:function (req, res) {
+    agregarComentario: function (req, res) {
         res.render('agregarComentario');
     },
-    storeComentario:function (req, res) {
+    storeComentario: function (req, res) {
         res.redirect('detallePost');
     },
     detallePost: function (req, res) {
-        db.Post.findByPk(req.params.id,{
-            include:[{
-                association:"usuario"
-            },{association:"comentarios",
-        include:{
-            association:"comentario_usuario"
-        }}]
-        })
-        .then(data => {
-        //res.send(data)
-           res.render('detallePost', {
-            post: data,
-        })
-        })
-       
+        db.Post.findByPk(req.params.id, {
+                include: [{
+                    association: "usuario"
+                }, {
+                    association: "comentarios",
+                    include: {
+                        association: "comentario_usuario"
+                    }
+                }]
+            })
+            .then(data => {
+                //res.send(data)
+                res.render('detallePost', {
+                    post: data,
+                })
+            })
+
 
     },
     // detalleUsuario: function (req, res) {
@@ -112,9 +170,6 @@ var red = {
     //         posts: postsUsuario
     //     })
     // },
-    editarPerfil: function (req, res) {
-        res.render('editarPerfil')
-    },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
         /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:

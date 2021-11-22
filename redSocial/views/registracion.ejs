@@ -16,18 +16,20 @@
 
                 <div class="divgrande">
                     <h2 class="subtitle">Registrarme</h2>
-                    <form action="/user/registracion" method="POST">
+                    <form action="/user/registracion" method="POST" enctype="multipart/form-data">
                         <% if(locals.error != undefined){ %>
                         <p><%= error.message%> </p>
                         <% } %>
                         <label class="loggin">Nombre de Usuario:</label><br>
-                        <input class="campo" type="text" id="fname" name="username"><br>
+                        <input class="campo" type="text" id="fname" name="username" required><br>
                         <label class="loggin">Contraseña:</label><br>
                         <input class="campo" type="password" id="lname" name="password"><br>
                         <label class="loggin">Correo electrónico:</label><br>
                         <input class="campo" type="email" id="lname" name="email"><br>
                         <label class="loggin">Fecha de Nacimiento:</label><br>
-                        <input class="campo" type="date" id="lname" name="fechaNacimiento"><br>
+                        <input class="campo" type="date" id="lname" name="fechaNacimiento" required ><br>
+                        <label class="loggin">Foto de Perfil:</label><br>
+                        <input class="campo" type="file" id="lname" name="avatar"><br> 
                         <button>REGISTRARSE</button>
                     </form>
                 </div>

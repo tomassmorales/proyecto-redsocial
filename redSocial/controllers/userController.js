@@ -47,7 +47,8 @@ let userController = {
 							email: req.body.email,
 							contrasenia: passwordEncriptada,
 							fechaNacimiento: req.body.fechaNacimiento,
-							createdAt: Date.now()
+							createdAt: Date.now(),
+							fotoPerfil: req.file.filename
 						})
 						.then(user => {
 							res.redirect('/')
@@ -119,7 +120,17 @@ let userController = {
 		if (req.session.user == undefined) {
 			res.redirect("/user/login")
 		} else {
-			db.Usuario.findByPk(req.session.user.id)
+			db.Usuario.findByPk(req.session.user.id, {
+
+					include: [{
+							association: "seguidor"
+						},
+						{
+							association: "seguido"
+						}
+					]
+
+				})
 				.then(user => {
 					let postsUsuario = posteos.lista;
 					let listaUsuarios = usuario.lista;
@@ -132,28 +143,40 @@ let userController = {
 		}
 	},
 	detail: function (req, res) {
-		db.Usuario.findByPk(req.params.id, {
-				include: [
-				{association: "seguidor"},
-				{association: "seguido"}
-			]
-			})
-			.then(detail => {
-				// return res.send(detail)
-				let loSigue = false
-				for (let i = 0; i < detail.seguidor.length; i++) {
-					if (req.session.user.id == detail.seguidor[i].id) {
-						loSigue = true
-					}
-				}
-				res.render("detalleUsuario", {
-					detail: detail,
-					loSigue: loSigue
+		if (req.session.user.id != req.params.id) {
+			db.Usuario.findByPk(req.params.id, {
+					include: [{
+							association: "seguidor"
+						},
+						{
+							association: "seguido"
+						}
+					]
 				})
-			})
-			.catch(error=>{
-				console.log(error);
-			})
+				.then(detail => {
+					// return res.send(detail)
+					if (req.session.user != undefined) {
+						let loSigue = false
+						for (let i = 0; i < detail.seguidor.length; i++) {
+							if (req.session.user.id == detail.seguidor[i].id) {
+								loSigue = true
+							}
+						}
+
+						res.render("detalleUsuario", {
+							detail: detail,
+							loSigue: loSigue
+						})
+					} else {
+						res.redirect("/user/login")
+					}
+				})
+				.catch(error => {
+					console.log(error);
+				})
+		} else {
+			res.redirect("/user/miPerfil")
+		}
 	},
 	follow: function (req, res) {
 		if (req.session.user != undefined) {
@@ -189,6 +212,74 @@ let userController = {
 			res.redirect("/user/login")
 		}
 	},
+	editarPerfil: function (req, res) {
+		if (req.session.user != undefined) {
+			db.Usuario.findOne({
+					where: {
+						email: req.session.user.email
+					}
+				})
+				.then(function (usuario) {
+					res.render("editarPerfil", {
+						user: usuario
+					});
+				})
+		} else {
+			res.redirect("/user/login");
+		}
+	},
+	procesoEditar: function (req, res) {
+		if (req.file != undefined) {
+			db.Usuario.update({
+					nombreDeUsuario: req.body.username,
+					// email: req.body.email,
+					fotoPerfil: req.file.filename
+				}, {
+					where: {
+						email: req.body.email
+					}
+				})
+				.then(user => {
+					db.Usuario.findOne({
+							where: {
+								email: req.body.email
+							}
+						})
+						.then(user => {
+							req.session.user = user;
+							res.locals.user = req.session.user;
+							res.redirect('/user/miPerfil');
+						})
+				})
+				.catch(function (error) {
+					res.send(error)
+				})
+		} else {
+			db.Usuario.update({
+					nombreDeUsuario: req.body.username,
+					email: req.body.email,
+				}, {
+					where: {
+						email: req.body.email
+					}
+				})
+				.then(user => {
+					db.Usuario.findOne({
+							where: {
+								email: req.body.email
+							}
+						})
+						.then(user => {
+							req.session.user = user;
+							res.locals.user = req.session.user;
+							res.redirect('/user/miPerfil');
+						})
+				})
+				.catch(function (error) {
+					res.send(error)
+				})
+		}
+	}
 }
 
 module.exports = userController;

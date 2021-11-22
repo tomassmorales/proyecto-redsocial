@@ -1,5 +1,5 @@
 var express = require('express');
-const red = require('../controllers/redController');
+// const red = require('../controllers/redController');
 var router = express.Router();
 let redController = require('../controllers/redController')
 
@@ -13,7 +13,7 @@ router.get('/detallePost/:id?', redController.detallePost);
 
 // router.get('/detalleUsuario/:id?', redController.detalleUsuario);
 
-router.get('/editarPerfil', redController.editarPerfil);
+// router.get('/editarPerfil', redController.editarPerfil);
 
 // router.get('/login', redController.login);
 

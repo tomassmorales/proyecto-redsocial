@@ -54,11 +54,11 @@ CREATE TABLE `comentarios` (
 -- Inserciones
 
 INSERT INTO `usuarios` VALUES 
-(default,NULL,NULL,NULL,"https://c.wallhere.com/photos/12/ce/mel_gibson_celebrity_face_smile_eyes-717975.jpg!d",'2000-07-04','2021-11-04 22:41:35','2021-11-04 22:41:35','tomasmorales','tomassmorales2707@gmail.com','$2a$10$J4r9bIQclCncnZ3gXPPWJOE4clXa0vASOLBaR3FtOxm7bp4gVLIjy'),
-(default,NULL,NULL,NULL,"http://www.paredro.com/wp-content/uploads/2015/08/shutterstock_188419790-e1439475344980.jpg",'2021-11-26','2021-11-08 14:18:56','2021-11-08 14:18:56','tomas','ejemploOtro@gmail.com','$2a$10$1YIOn6Ac6H9f4xsNUSV4HOSM0lfg7YK0psP7GvJc008l1CQIN8RVm'),
-(default,NULL,NULL,NULL,"https://static2.abc.es/media/200912/14/davidmeca--300x180.jpg",'2000-07-27','2021-11-08 14:27:35','2021-11-08 14:27:35','tmorales','tmorales@udesa.edu.ar','$2a$10$kDAHWssh1cFdAldy2yUnQuXn6hlxa/ZorndNWsxQ1JPAv73VUxUCe'),
-(default,NULL,NULL,NULL,"https://hips.hearstapps.com/ellees.h-cdn.co/assets/15/37/1024x1332/1024x1332-r-ti-rostros-dilatados-personas-energicas-12718630-1-esl-es-rostros-dilatados-personas-energicas-jpg.jpg?resize=480:*",'2021-11-17','2021-11-11 12:20:56','2021-11-11 12:20:56','ejemploTomas','ejemplo@udesa.edu.ar','$2a$10$cbc2vQGfR2/rQ9HEvAp.FeSIWE7S55nrEGa.9YqVJ16BJf85K5b6u'),
-(default,NULL,NULL,NULL,"https://i.pinimg.com/736x/c8/e9/72/c8e972106158f5dd52b0b20c6292f089.jpg",'2007-03-01','2021-11-11 12:23:38','2021-11-11 12:23:38','juangonzales','juangonzales@gmail.com','$2a$10$vY0s72RRj.ExbQPqmjg48.WDHl2t1mbtoVIu4HGbKsl39AJqU8/qu');
+(default,NULL,"https://c.wallhere.com/photos/12/ce/mel_gibson_celebrity_face_smile_eyes-717975.jpg!d",'2000-07-04','2021-11-04 22:41:35','2021-11-04 22:41:35','tomasmorales','tomassmorales2707@gmail.com','$2a$10$J4r9bIQclCncnZ3gXPPWJOE4clXa0vASOLBaR3FtOxm7bp4gVLIjy'),
+(default,NULL,"http://www.paredro.com/wp-content/uploads/2015/08/shutterstock_188419790-e1439475344980.jpg",'2021-11-26','2021-11-08 14:18:56','2021-11-08 14:18:56','tomas','ejemploOtro@gmail.com','$2a$10$1YIOn6Ac6H9f4xsNUSV4HOSM0lfg7YK0psP7GvJc008l1CQIN8RVm'),
+(default,NULL,"https://static2.abc.es/media/200912/14/davidmeca--300x180.jpg",'2000-07-27','2021-11-08 14:27:35','2021-11-08 14:27:35','tmorales','tmorales@udesa.edu.ar','$2a$10$kDAHWssh1cFdAldy2yUnQuXn6hlxa/ZorndNWsxQ1JPAv73VUxUCe'),
+(default,NULL,"https://hips.hearstapps.com/ellees.h-cdn.co/assets/15/37/1024x1332/1024x1332-r-ti-rostros-dilatados-personas-energicas-12718630-1-esl-es-rostros-dilatados-personas-energicas-jpg.jpg?resize=480:*",'2021-11-17','2021-11-11 12:20:56','2021-11-11 12:20:56','ejemploTomas','ejemplo@udesa.edu.ar','$2a$10$cbc2vQGfR2/rQ9HEvAp.FeSIWE7S55nrEGa.9YqVJ16BJf85K5b6u'),
+(default,NULL,"https://i.pinimg.com/736x/c8/e9/72/c8e972106158f5dd52b0b20c6292f089.jpg",'2007-03-01','2021-11-11 12:23:38','2021-11-11 12:23:38','juangonzales','juangonzales@gmail.com','$2a$10$vY0s72RRj.ExbQPqmjg48.WDHl2t1mbtoVIu4HGbKsl39AJqU8/qu');
 
 INSERT INTO posts VALUES(default,1,"https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg","La mejor carne","2021-9-21");
 INSERT INTO posts VALUES(default,2,"https://i0.wp.com/voces365.com/wp-content/uploads/SEMANA-DE-LA-COMIDA-MEXICANA-AMORALAMEXICANA-2.jpg?fit=900%2C773&ssl=1","Siempre es mejor estar saludable!","2021-9-22");
@@ -91,3 +91,8 @@ INSERT INTO comentarios VALUES(default,9,2,"nasheee","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,9,3,"Que copado!!","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,10,4,"Bien ahi","2021-11-03 08:00:00");
 INSERT INTO comentarios VALUES(default,10,5,"Que rico ese lugar","2021-11-03 08:00:00");
+
+-- Para que funcione el follow-me 
+
+ALTER TABLE usuarios DROP seguidores;
+ALTER TABLE usuarios DROP seguidos;
