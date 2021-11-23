@@ -108,7 +108,17 @@ var red = {
         res.render('agregarComentario');
     },
     storeComentario: function (req, res) {
-        res.redirect('detallePost');
+        db.Comentarios.create({
+            id: req.body.id,
+            posteo_id: req.body.posteo_id,
+            usuario_id: req.body.usuario_id,
+            texto: req.body.comentario,
+            fecha_creacion: Date.now(),
+        })
+        .then(comentarios =>{
+            res.redirect('detallePost/'); 
+        })
+        
     },
     detallePost: function (req, res) {
         db.Post.findByPk(req.params.id, {
