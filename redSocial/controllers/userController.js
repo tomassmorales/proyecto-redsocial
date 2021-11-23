@@ -143,6 +143,7 @@ let userController = {
 		}
 	},
 	detail: function (req, res) {
+		if (req.session.user != undefined){
 		if (req.session.user.id != req.params.id) {
 			db.Usuario.findByPk(req.params.id, {
 					include: [{
@@ -177,6 +178,9 @@ let userController = {
 		} else {
 			res.redirect("/user/miPerfil")
 		}
+	}else{
+		res.redirect("/user/login")
+	}
 	},
 	follow: function (req, res) {
 		if (req.session.user != undefined) {
