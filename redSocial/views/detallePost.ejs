@@ -30,6 +30,12 @@
                             <h3><a
                                     href="/user/detalleUsuario/<%=post.usuario.id%>"><%= post.usuario.nombreDeUsuario%></a>
                             </h3>
+                            <% if(user.id == post.usuario.id){ %>
+                            <a href="/editarPost/<%= post.id %>">EDITAR</a>
+                            <form action="/deletePost/<%= post.id %>" method="POST">
+                                <button>BORRAR</button>
+                            </form>
+                            <% } %>
                         </div>
                         <div class="lista-comentarios">
                             <% post.comentarios.forEach(element => { %>

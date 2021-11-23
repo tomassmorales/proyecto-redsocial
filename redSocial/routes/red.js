@@ -35,12 +35,14 @@ router.get('/detallePost/:id?', redController.detallePost);
 
 router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
-router.get('/editarPost', redController.editarPost);
+router.get('/editarPost/:id?', redController.editarPost);
 
 router.post('/subirPost', upload.single("imagen"), redController.storePost);
 
 router.post('/detallePost/:id?', redController.storeComentario);
 
-router.post("/cambiarPost",upload.single("avatar"), redController.cambiarPost);
+router.post("/cambiarPost/:id",upload.single("imagen"), redController.cambiarPost);
+
+router.post("/deletePost/:id", redController.deletePost)
 
 module.exports = router;

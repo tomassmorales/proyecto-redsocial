@@ -201,41 +201,53 @@ var red = {
         })
     },
     cambiarPost: function (req, res) {
-		if (req.file != undefined) {
-			db.Post.update({
-				imagen: req.file.filename,
-				descripcion: req.body.descripcion },
-				{
-					where: {
-						id : req.session.id
-					}
-				})
-				.then(Post =>
-					db.Post.findOne({
-						where: {
-							id: req.body.id
-						} 
-					}))
-					.catch(function (error) {
-						res.send(error)
-					})
-	} },
-	editarPost: function (req, res) {
-		if (req.session.user != undefined){
-			db.Post.findOne({
-				where: {
-					id: req.session.id
-				}
-			})
-			.then(function (editarPost) {
-				res.render("editarPost", {
-					edit: editarPost
-				});
-			})
-		} else {
-		res.redirect("/user/login");
-			}
-	}
+        if (req.file != undefined && req.session.user != undefined) {
+            db.Post.update({
+                    imagen: req.file.filename,
+                    descripcion: req.body.descripcion
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then(post =>{
+                    res.redirect("/detallePost/" + req.params.id)
+                })
+                .catch(function (error) {
+                    res.send(error)
+                })
+        }else{
+            res.redirect("/user/login")
+        }
+    },
+    editarPost: function (req, res) {
+        if (req.session.user != undefined) {
+            res.render("editarPost", {postId: req.params.id});
+        } else {
+            res.redirect("/user/login");
+        }
+    },
+    deletePost: function(req,res){
+        if (req.session.user != undefined) {
+            let id = req.params.id;
+            let comentDelete = db.Comentarios.destroy({
+                where: {
+                    posteo_id: id
+                }
+            })
+            let postDelete = db.Post.destroy({
+                where: {
+                    id: id
+                }
+            })
+            Promise.all([comentDelete, postDelete])
+            .then(function([comentario, post]){
+                res.redirect("/")
+            })
+        } else {
+            return res.redirect("/user/login")
+        }  
+    }
 
 }
 module.exports = red;
