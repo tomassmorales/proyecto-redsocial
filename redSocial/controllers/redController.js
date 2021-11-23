@@ -204,33 +204,45 @@ var red = {
 		if (req.file != undefined) {
 			db.Post.update({
 				imagen: req.file.filename,
-				descripcion: req.body.descripcion },
+				descripcion: req.body.descripcion,
+                },
 				{
 					where: {
-						id : req.session.id
+						id : req.session.user.id
 					}
 				})
-				.then(Post =>
-					db.Post.findOne({
-						where: {
-							id: req.body.id
-						} 
-					}))
+                    .then(Post=> {
+                        res.redirect("/detallePost" + req.session.user.id)
+                    })
+                }else{
+                    db.Post.update({
+                        imagen: req.file.filename,
+                        descripcion: req.body.descripcion,
+                    }, {
+                        where:{
+                            id: req.session.user.id
+                        }
+                    })
+                    .then(Post => {
+                        res.redirect("/detallePost/" + req.session.user.id)
+                    })
+                
+                    
 					.catch(function (error) {
 						res.send(error)
 					})
 	} },
 	editarPost: function (req, res) {
 		if (req.session.user != undefined){
-			db.Post.findOne({
-				where: {
-					id: req.session.id
-				}
-			})
-			.then(function (editarPost) {
-				res.render("editarPost", {
-					edit: editarPost
-				});
+			db.Post.findByPk(req.params.id)
+            .then(data => {
+				if (req.session.user.id != req.params.id){
+                    res.render("editarPost", {
+                        edit: data
+                    });
+                } else {
+                    res.redirect('/')
+				}	
 			})
 		} else {
 		res.redirect("/user/login");
