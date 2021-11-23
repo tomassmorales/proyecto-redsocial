@@ -99,19 +99,22 @@ var red = {
                 res.send(err)
             })
     },
-    agregarComentario: function (req, res) {
-        res.render('agregarComentario');
-    },
+    // agregarComentario: function (req, res) {
+    //     res.render('agregarComentario');
+    // },
     storeComentario: function (req, res) {
         db.Comentarios.create({
-                id: req.body.id,
-                posteo_id: req.body.posteo_id,
-                usuario_id: req.body.usuario_id,
+                posteo_id: req.params.id,
+                usuario_id: req.session.user.id,
                 texto: req.body.comentario,
                 fecha_creacion: Date.now(),
+            }, {
+                include: [{
+                    association: "post"
+                }]
             })
             .then(comentarios => {
-                res.redirect('detallePost/' + req.params.id);
+                res.redirect('/detallePost/' + comentarios.posteo_id);
             })
 
     },
