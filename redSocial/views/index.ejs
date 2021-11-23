@@ -23,7 +23,7 @@
                     <article class="post uk-card-default uk-flex uk-flex-column colordelbackground">
                         <div class="info-usuario uk-flex colorback" id="infousuario">
                             <div>
-                                <% if (element.usuario.fotoPerfil == " ") { %> 
+                                <% if (element.usuario.fotoPerfil != " ") { %> 
                                 <img id="fotoPerfil" src="/images/avatars/<%= element.usuario.fotoPerfil %>"
                                     alt="<%= element.usuario.fotoPerfil %> ">
                                 <% } else {%>
