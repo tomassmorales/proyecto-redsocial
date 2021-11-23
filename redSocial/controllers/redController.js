@@ -178,27 +178,36 @@ var red = {
     // },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
-        /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:
-        movie.findAll({
+        db.Post.findAll({
+            include: [{
+                association: "usuario"
+            }, {
+                association: "comentarios",
+                include: {
+                    association: "comentario_usuario"
+                }
+            }],
             where: [
                 {'descripcion': {[op.like]:`%${busqueda}%`}}
             ],
             order: [
-                ['fecha','ASC']
+                ['fecha_creacion','ASC']
             ],
             limit:5,
             offset:0
         })
-        .then( movies => {
-            return res.send(movies);
+        .then( posts => {
+            //return res.send(posts);
+            return res.render('resultadoBusqueda', {
+                data: posts,
+                busqueda:busqueda
+            })
         })
         .catch(error => {
             return res.send(error)
         })
-        */
-        res.render('resultadoBusqueda', {
-            data: busqueda
-        })
+        
+        
     },
     cambiarPost: function (req, res) {
 		if (req.file != undefined) {
