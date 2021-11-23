@@ -178,29 +178,39 @@ var red = {
     // },
     resultadoBusqueda: function (req, res) {
         let busqueda = req.query.busqueda;
-        /*Hay que traer los datos del usuario desde la base de datos para luego enviar la información a la vista, mas o menos parecido a esto:
-        movie.findAll({
-            where: [
-                {'descripcion': {[op.like]:`%${busqueda}%`}}
-            ],
-            order: [
-                ['fecha','ASC']
-            ],
-            limit:5,
-            offset:0
-        })
-        .then( movies => {
-            return res.send(movies);
-        })
-        .catch(error => {
-            return res.send(error)
-        })
-        */
-        res.render('resultadoBusqueda', {
-            data: busqueda
-        })
+        db.Post.findAll({
+                include: [{
+                    association: "usuario"
+                }, {
+                    association: "comentarios",
+                    include: {
+                        association: "comentario_usuario"
+                    }
+                }],
+                where: [{
+                    'descripcion': {
+                        [op.like]: `%${busqueda}%`
+                    }
+                }],
+                order: [
+                    ['fecha_creacion', 'ASC']
+                ],
+                limit: 5,
+                offset: 0
+            })
+            .then(posts => {
+                //return res.send(posts);
+                return res.render('resultadoBusqueda', {
+                    data: posts,
+                    busqueda: busqueda
+                })
+            })
+            .catch(error => {
+                return res.send(error)
+            })
     },
     cambiarPost: function (req, res) {
+
         if (req.file != undefined && req.session.user != undefined) {
             db.Post.update({
                     imagen: req.file.filename,
@@ -210,24 +220,40 @@ var red = {
                         id: req.params.id
                     }
                 })
-                .then(post =>{
+                .then(post => {
                     res.redirect("/detallePost/" + req.params.id)
                 })
                 .catch(function (error) {
                     res.send(error)
                 })
-        }else{
+        } else if (req.file == undefined) {
+            db.Post.update({
+                    descripcion: req.body.descripcion
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then(post => {
+                    res.redirect("/detallePost/" + req.params.id)
+                })
+                .catch(function (error) {
+                    res.send(error)
+                })
+        } else {
             res.redirect("/user/login")
         }
     },
     editarPost: function (req, res) {
         if (req.session.user != undefined) {
-            res.render("editarPost", {postId: req.params.id});
+            res.render("editarPost", {
+                postId: req.params.id
+            });
         } else {
             res.redirect("/user/login");
         }
     },
-    deletePost: function(req,res){
+    deletePost: function (req, res) {
         if (req.session.user != undefined) {
             let id = req.params.id;
             let comentDelete = db.Comentarios.destroy({
@@ -241,13 +267,12 @@ var red = {
                 }
             })
             Promise.all([comentDelete, postDelete])
-            .then(function([comentario, post]){
-                res.redirect("/")
-            })
+                .then(function ([comentario, post]) {
+                    res.redirect("/")
+                })
         } else {
             return res.redirect("/user/login")
-        }  
+        }
     }
-
 }
 module.exports = red;
