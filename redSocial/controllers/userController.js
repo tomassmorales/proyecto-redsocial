@@ -135,13 +135,17 @@ let userController = {
 
 				})
 				.then(user => {
-					let postsUsuario = posteos.lista;
-					let listaUsuarios = usuario.lista;
+					//let postsUsuario = posteos.lista;
+					//let listaUsuarios = usuario.lista;
 					res.render("miPerfil", {
 						user: user,
-						users: listaUsuarios,
-						posts: postsUsuario
+						//users: listaUsuarios,
+						//posts: postsUsuario
 					})
+				})
+				.catch(err => {
+					console.log(err);
+					res.send(err)
 				})
 		}
 	},
@@ -290,7 +294,8 @@ let userController = {
 					res.send(error)
 				})
 		}
-	}
+	},
+	
 }
 
 module.exports = userController;

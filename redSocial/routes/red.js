@@ -35,11 +35,12 @@ router.get('/detallePost/:id?', redController.detallePost);
 
 router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
+router.get('/editarPost', redController.editarPost);
 
 router.post('/subirPost', upload.single("imagen"), redController.storePost);
 
 router.post('/detallePost/:id?', redController.storeComentario);
 
-//router.post()
+router.post("/cambiarPost",upload.single("avatar"), redController.cambiarPost);
 
 module.exports = router;
