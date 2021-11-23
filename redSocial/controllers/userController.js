@@ -127,6 +127,9 @@ let userController = {
 						},
 						{
 							association: "seguido"
+						},
+						{
+							association: "posteos"
 						}
 					]
 
@@ -151,6 +154,9 @@ let userController = {
 						},
 						{
 							association: "seguido"
+						},
+						{
+							association: "posteos"
 						}
 					]
 				})
@@ -163,6 +169,7 @@ let userController = {
 								loSigue = true
 							}
 						}
+						
 
 						res.render("detalleUsuario", {
 							detail: detail,
