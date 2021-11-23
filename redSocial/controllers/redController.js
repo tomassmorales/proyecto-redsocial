@@ -118,6 +118,8 @@ var red = {
         }
 
     },
+
+    
     detallePost: function (req, res) {
         db.Post.findByPk(req.params.id, {
                 include: [{
