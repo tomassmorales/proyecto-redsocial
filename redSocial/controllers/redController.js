@@ -1,5 +1,6 @@
 const usuario = require('../data/datos');
 const db = require('../database/models');
+
 const op = db.Sequelize.Op;
 
 var red = {
@@ -76,30 +77,27 @@ var red = {
                 })
         }
     },
-    agregarPost: function (req, res) {
+   agregarPost: function (req, res) {
         db.Post.findAll()
-            .then(Post => {
-                res.render('agregarPost', {
-                    Post
-                })
-            })
+            //.then(posts => {
+                res.render('agregarPost')//,{posts})
+            //})
             .catch(err => {
                 console.log(err)
                 res.send(err)
             })
         //res.render('agregarPost')
-    },
+    }, 
     storePost: function (req, res) {
-        db.Post.agregarPost({
+        db.Post.create({
                 id: req.body.id,
                 usuario_id: req.body.usuario_id,
                 descripcion: req.body.descripcion,
                 fecha_creacion: Date.now(),
-                descripcion: req.body.descripcion,
                 imagen: req.body.imagen
             })
-            .then(movie => {
-                res.redirect("detallePost");
+            .then(post => {
+                res.redirect("/detallePost/");
             })
             .catch(err => {
                 console.log(err);
