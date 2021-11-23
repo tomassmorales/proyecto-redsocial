@@ -37,7 +37,7 @@ router.get('/resultadoBusqueda', redController.resultadoBusqueda);
 
 router.post('/subirPost', upload.single("imagen"), redController.storePost);
 
-//router.post('/newComent', redController.storeComent);
+router.post('/agregarComentario', redController.storeComentario);
 
 //router.post()
 

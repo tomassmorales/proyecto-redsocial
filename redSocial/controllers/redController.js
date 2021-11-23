@@ -116,7 +116,7 @@ var red = {
             fecha_creacion: Date.now(),
         })
         .then(comentarios =>{
-            res.redirect('detallePost/'); 
+            res.redirect('detallePost/' + req.params.id); 
         })
         
     },
@@ -131,6 +131,7 @@ var red = {
                     }
                 }]
             })
+            
             .then(data => {
                 //res.send(data)
                 res.render('detallePost', {
