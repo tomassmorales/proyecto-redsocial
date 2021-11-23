@@ -103,19 +103,19 @@ var red = {
     //     res.render('agregarComentario');
     // },
     storeComentario: function (req, res) {
-        db.Comentarios.create({
-                posteo_id: req.params.id,
-                usuario_id: req.session.user.id,
-                texto: req.body.comentario,
-                fecha_creacion: Date.now(),
-            }, {
-                include: [{
-                    association: "post"
-                }]
-            })
-            .then(comentarios => {
-                res.redirect('/detallePost/' + comentarios.posteo_id);
-            })
+        if (req.session.user != undefined) {
+            db.Comentarios.create({
+                    posteo_id: req.params.id,
+                    usuario_id: req.session.user.id,
+                    texto: req.body.comentario,
+                    fecha_creacion: Date.now(),
+                })
+                .then(comentarios => {
+                    res.redirect('/detallePost/' + comentarios.posteo_id);
+                })
+        } else {
+            res.redirect("/user/login")
+        }
 
     },
     detallePost: function (req, res) {
