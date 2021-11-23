@@ -135,13 +135,17 @@ let userController = {
 
 				})
 				.then(user => {
-					let postsUsuario = posteos.lista;
-					let listaUsuarios = usuario.lista;
+					//let postsUsuario = posteos.lista;
+					//let listaUsuarios = usuario.lista;
 					res.render("miPerfil", {
 						user: user,
-						users: listaUsuarios,
-						posts: postsUsuario
+						//users: listaUsuarios,
+						//posts: postsUsuario
 					})
+				})
+				.catch(err => {
+					console.log(err);
+					res.send(err)
 				})
 		}
 	},
@@ -290,6 +294,42 @@ let userController = {
 					res.send(error)
 				})
 		}
+	},
+	cambiarPost: function (req, res) {
+		if (req.file != undefined) {
+			db.Post.update({
+				imagen: req.file.filename,
+				descripcion: req.body.descripcion },
+				{
+					where: {
+						id : req.session.id
+					}
+				})
+				.then(Post =>
+					db.Post.findOne({
+						where: {
+							id: req.body.id
+						} 
+					}))
+					.catch(function (error) {
+						res.send(error)
+					})
+	} },
+	editarPost: function (req, res) {
+		if (req.session.user != undefined){
+			db.Post.findOne({
+				where: {
+					id: req.session.id
+				}
+			})
+			.then(function (editarPost) {
+				res.render("editarPost", {
+					edit: editarPost
+				});
+			})
+		} else {
+		res.redirect("/user/login");
+			}
 	}
 }
 
