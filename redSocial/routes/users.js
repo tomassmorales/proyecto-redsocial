@@ -33,7 +33,6 @@ router.get('/detalleUsuario/:id', userController.detail);
 
 router.get('/editarPerfil', userController.editarPerfil);
 
-router.get('/editarPost', userController.editarPost);
 
 router.post("/registracion", upload.single("avatar"), userController.registrar);
 
@@ -47,5 +46,4 @@ router.post('/dejarSeguir/:id', userController.unfollow);
 
 router.post("/editarPerfil",upload.single("avatar"),userController.procesoEditar);
 
-router.post("/cambiarPost",upload.single("avatar"), userController.cambiarPost);
 module.exports = router;
