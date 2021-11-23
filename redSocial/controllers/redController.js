@@ -21,7 +21,7 @@ var red = {
                     limit: 10
                 })
                 .then(data => {
-                    //res.send(data)
+                    // res.send(data)
                     res.render('index', {
                         posteos: data,
                     })
@@ -77,27 +77,22 @@ var red = {
                 })
         }
     },
-   agregarPost: function (req, res) {
-        db.Post.findAll()
-            //.then(posts => {
-                res.render('agregarPost')//,{posts})
-            //})
-            .catch(err => {
-                console.log(err)
-                res.send(err)
-            })
-        //res.render('agregarPost')
-    }, 
+    agregarPost: function (req, res) {
+        if (req.session.user != undefined) {
+            res.render("agregarPost");
+        } else {
+            res.redirect("/user/login");
+        }
+    },
     storePost: function (req, res) {
         db.Post.create({
-                id: req.body.id,
-                usuario_id: req.body.usuario_id,
+                usuario_id: req.session.user.id,
                 descripcion: req.body.descripcion,
                 fecha_creacion: Date.now(),
-                imagen: req.body.imagen
+                imagen: req.file.filename
             })
             .then(post => {
-                res.redirect("/detallePost/");
+                res.redirect("/detallePost/" + post.id);
             })
             .catch(err => {
                 console.log(err);
@@ -109,16 +104,16 @@ var red = {
     },
     storeComentario: function (req, res) {
         db.Comentarios.create({
-            id: req.body.id,
-            posteo_id: req.body.posteo_id,
-            usuario_id: req.body.usuario_id,
-            texto: req.body.comentario,
-            fecha_creacion: Date.now(),
-        })
-        .then(comentarios =>{
-            res.redirect('detallePost/' + req.params.id); 
-        })
-        
+                id: req.body.id,
+                posteo_id: req.body.posteo_id,
+                usuario_id: req.body.usuario_id,
+                texto: req.body.comentario,
+                fecha_creacion: Date.now(),
+            })
+            .then(comentarios => {
+                res.redirect('detallePost/' + req.params.id);
+            })
+
     },
     detallePost: function (req, res) {
         db.Post.findByPk(req.params.id, {
@@ -131,9 +126,8 @@ var red = {
                     }
                 }]
             })
-            
             .then(data => {
-                //res.send(data)
+                // res.send(data)
                 res.render('detallePost', {
                     post: data,
                 })

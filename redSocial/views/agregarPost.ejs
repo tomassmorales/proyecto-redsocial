@@ -18,7 +18,7 @@
 
                 <div class="agregarpost">
                     <h2 class="titlepost">Agregar post</h2>
-                    <form action="/subirPost" method="POST">
+                    <form action="/subirPost" method="POST" enctype="multipart/form-data">
                         <label for="descripcion">descripción</label><input type="text" name="descripcion"><br>
                         <label for="imagen">Imagen</label><input type="file" id="img" name="imagen" accept="image/*"><br>
                         <button>Subir</button>
