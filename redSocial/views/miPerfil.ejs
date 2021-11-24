@@ -51,12 +51,12 @@
                         <%// postDeUsuario.push(posts[i])%>
                         <% } %>
                         <%// } %>
-                        <% for(let i = 0; i < postDeUsuario.length; i++){ %>
+                        <%// for(let i = 0; i < postDeUsuario.length; i++){ %>
                         <div
                             class="uk-card uk-card-hover uk-card-body uk-flex uk-flex-column uk-flex-middle uk-flex-center ">
-                            <a href="/detallePost/<%=//user.posteos.dataValues.id  //postDeUsuario[i].id %> " class="link-detalle">
-                                <img src=<%=// postDeUsuario[i].imagen %> alt="foto de perfil" class="foto-perfil">
-                                <p class="uk-text-center colornegro"><%=// postDeUsuario[i].descripción %> </p>
+                            <a href="/detallePost/<%=user.posteos.id  //postDeUsuario[i].id %> " class="link-detalle">
+                                <img src=<%= user.posteos.imagen// postDeUsuario[i].imagen %> alt="foto de perfil" class="foto-perfil">
+                                <p class="uk-text-center colornegro"><%= user.posteos.descripción//postDeUsuario[i].descripción %> </p>
                             </a>
                         </div>
                         <% } %>

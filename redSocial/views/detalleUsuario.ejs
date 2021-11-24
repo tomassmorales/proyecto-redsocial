@@ -48,6 +48,28 @@
                         </div>
                     </div>
                 </section>
+                <section class="muro uk-flex uk-flex-middle uk-flex-center">
+                    <div class="uk-grid uk-child-width-1-3 uk-width-1-1 uk-margin-remove" uk-grid>
+                        <% for (let i = 0; i<detail.posteos.length; i++) { %> 
+                        <% console.log(detail.posteos) %> 
+                        <%// let postDeUsuario = []; %>
+                            <%// postDeUsuario.push(user.posteos.imagen[i]) %>  
+                            
+                        <%// if(posts[i].usuario_id == users[0].id) {%>
+                        <%// postDeUsuario.push(posts[i])%>
+                        <%// } %>
+                        <%// } %>
+                        <%// for(let i = 0; i < postDeUsuario.length; i++){ %>
+                        <div
+                            class="uk-card uk-card-hover uk-card-body uk-flex uk-flex-column uk-flex-middle uk-flex-center ">
+                            <a href="/detallePost/<%= detail.posteos.id %> " class="link-detalle">
+                                <img src=<%= detail.posteos.imagen //postDeUsuario[i].imagen %> alt="foto de perfil" class="foto-perfil">
+                                <p class="uk-text-center colornegro"><%= detail.posteos.descripción// postDeUsuario[i].descripción %> </p>
+                            </a>
+                        </div>
+                        <% } %>
+                    </div>
+                </section>
             </div>
         </div>
     </main>
