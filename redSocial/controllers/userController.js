@@ -129,7 +129,10 @@ let userController = {
 							association: "seguido"
 						},
 						{
-							association: "posteos"
+							association: "posteos",
+							order: [
+								["fecha_creacion", "DESC"]
+							]
 						}
 					]
 
@@ -160,7 +163,10 @@ let userController = {
 								association: "seguido"
 							},
 							{
-								association: "posteos"
+								association: "posteos",
+								order: [
+									["fecha_creacion", "DESC"]
+								]
 							}
 						]
 					})

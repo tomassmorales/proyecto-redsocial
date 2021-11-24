@@ -19,10 +19,11 @@
                 <section class="info-usuario uk-flex uk-flex-around uk-width-1-1">
                     <div class="uk-width-1-3 uk-flex uk-flex-center uk-flex-middle">
                         <% if (detail.fotoPerfil != "") { %>
-                            <img src="/images/avatars/<%= detail.fotoPerfil %>" alt="<%= detail.fotoPerfil%>" class="fotoo-perfil">
-                            <% } else {%>
-                            <img id="fotoPerfil" src="/images/avatars/avatar.png" alt="avatar">
-                            <% } %>
+                        <img src="/images/avatars/<%= detail.fotoPerfil %>" alt="<%= detail.fotoPerfil%>"
+                            class="fotoo-perfil">
+                        <% } else {%>
+                        <img id="fotoPerfil" src="/images/avatars/avatar.png" alt="avatar">
+                        <% } %>
                     </div>
                     <div class="uk-width-2-3 uk-flex uk-flex-column uk-flex-around">
                         <div class="uk-flex uk-flex-middle">
@@ -50,21 +51,14 @@
                 </section>
                 <section class="muro uk-flex uk-flex-middle uk-flex-center">
                     <div class="uk-grid uk-child-width-1-3 uk-width-1-1 uk-margin-remove" uk-grid>
-                        <% for (let i = 0; i<detail.posteos.length; i++) { %> 
-                        <% console.log(detail.posteos) %> 
-                        <%// let postDeUsuario = []; %>
-                            <%// postDeUsuario.push(user.posteos.imagen[i]) %>  
-                            
-                        <%// if(posts[i].usuario_id == users[0].id) {%>
-                        <%// postDeUsuario.push(posts[i])%>
-                        <%// } %>
-                        <%// } %>
-                        <%// for(let i = 0; i < postDeUsuario.length; i++){ %>
+                        <% for (let i = 0; i< detail.posteos.length; i++) { %>
                         <div
                             class="uk-card uk-card-hover uk-card-body uk-flex uk-flex-column uk-flex-middle uk-flex-center ">
-                            <a href="/detallePost/<%= detail.posteos.id %> " class="link-detalle">
-                                <img src=<%= detail.posteos.imagen //postDeUsuario[i].imagen %> alt="foto de perfil" class="foto-perfil">
-                                <p class="uk-text-center colornegro"><%= detail.posteos.descripción// postDeUsuario[i].descripción %> </p>
+                            <a href="/detallePost/<%= detail.posteos[i].id %> " class="link-detalle">
+                                <img src="/images/posts/<%= detail.posteos[i].imagen%>"
+                                    alt="<%= detail.posteos[i].imagen %> " class="foto-perfil">
+                                <p class="uk-text-center colornegro">
+                                    <%= detail.posteos[i].descripcion// postDeUsuario[i].descripción %> </p>
                             </a>
                         </div>
                         <% } %>
